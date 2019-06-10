@@ -1,5 +1,7 @@
 import React, { Component } from "react"
 import { withRouter } from "react-router-dom"
+import API from "./API/apiCalls";
+import ScootMap from "./API/Map/ScootMap";
 
 
 class ApplicationViews extends Component {
@@ -14,19 +16,27 @@ class ApplicationViews extends Component {
 
 
     componentDidMount() {
-      navigator.geolocation.getCurrentPosition(position => {
-        console.log(position.coords)
+      API.getUserLocation()
+      .then(user => {
+        this.setState({userLat: user.location.lat, userLng: user.location.lng})
+      })
+    }
+
+    getSpin = () => {
+      API.getSpin()
+      .then(r => {
+        this.setState({spins: r.data.bikes})
       })
     }
 
     render() {
-        return (<h1>hello</h1>)
-            // <>
-            //     <Route exact path="/friends" render={(props) => {
-            //        <Friends friends={this.state.friends} {...props} />
-            //         }
-            //     } />
-            // </>
+      return(<>
+        <h1>homepage</h1>
+        <button>Find a Scooter</button>
+        {/* <Route path="/map/" component={ScootMap} /> */}
+        <ScootMap />
+      </>
+      )
     }
 
 }
