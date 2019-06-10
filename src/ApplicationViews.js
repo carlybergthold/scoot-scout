@@ -1,7 +1,7 @@
 import React, { Component } from "react"
-import { withRouter } from "react-router-dom"
+import { withRouter, Route } from "react-router-dom"
 import API from "./API/apiCalls";
-import ScootMap from "./API/Map/ScootMap";
+import ScootMap from "./components/Map/ScootMap";
 
 
 class ApplicationViews extends Component {
