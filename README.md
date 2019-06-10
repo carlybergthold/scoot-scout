@@ -16,5 +16,5 @@ APIs Used:
 * Lime
 * Spin
 
-![app mockup](https://drive.google.com/file/d/1W-FTuQOG-jyNFeDHt63RJqYyBKJc9KAS/view?usp=sharing)
-![app mockup](https://drive.google.com/file/d/1q1akJzRPD_EEiR4g0uWj4laoxVja-_P2/view?usp=sharing)
+![app mockup](https://photos.google.com/search/_tra_/photo/AF1QipOufTfOpOqFi51oyWkeP13M2XBizaP3P6ViVauK)
+![mockup2](https://photos.google.com/search/_tra_/photo/AF1QipN6L-C8p1MhaSQyqRQkCdqTs-j_-PaXwAnoP0Z7)
