@@ -1,0 +1,19 @@
+#navBar {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: lightblue;
+}
+
+#mainlogo {
+    width: 1rem;
+    margin-left: 1rem;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-flow: row wrap;
+    margin-right: 2rem;
+}

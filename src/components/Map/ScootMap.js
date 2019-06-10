@@ -1,8 +1,8 @@
 import React, { Component } from "react"
 import { withRouter } from "react-router-dom"
 import L from 'leaflet'
-import "../Map/ScootMap.css"
-import apiKeys from "../apiKeys";
+import "./ScootMap.css"
+import apiKeys from "../../API/apiKeys";
 
 
 class ScootMap extends Component {

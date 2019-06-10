@@ -1,12 +1,14 @@
 import React, { Component } from "react"
 import ApplicationViews from "./ApplicationViews"
-import { withRouter, Route } from 'react-router'
+import { withRouter } from 'react-router'
+import TopNav from "./components/Nav/Nav";
+
 
 class ScootApp extends Component {
     render() {
         return (
             <>
-                {/* <Nav /> */}
+                <TopNav />
                 <ApplicationViews />
             </>
         )
