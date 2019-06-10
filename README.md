@@ -15,3 +15,6 @@ APIs Used:
 * Bird
 * Lime
 * Spin
+
+![app mockup](https://drive.google.com/file/d/1W-FTuQOG-jyNFeDHt63RJqYyBKJc9KAS/view?usp=sharing)
+![app mockup](https://drive.google.com/file/d/1q1akJzRPD_EEiR4g0uWj4laoxVja-_P2/view?usp=sharing)
