@@ -3,26 +3,21 @@ import { withRouter } from "react-router-dom"
 import L from 'leaflet'
 import "./ScootMap.css"
 import apiKeys from "../../API/apiKeys";
+import API from "../../API/apiCalls"
 
 
 class ScootMap extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {}
-    }
-
     addScootersToMap = (map) => {
-        L.marker([36.141, -86.7516844]).addTo(map).bindPopup("<b>Hello world!</b><br>I am a popup.")
-        console.log("hi", this.props.userLat)
-        // this.props.spins.forEach(scooter => {
-        //     console.log([scooter.lat, scooter.lon])
-        //     L.marker([36, -86]).addTo(map).bindPopup("<b>Hello world!</b><br>I am a popup.")
-        // })
+        API.getSpin().then(r => {
+            r.data.bikes.forEach(scooter => {
+                new L.marker([scooter.lat, scooter.lon]).addTo(map);
+            });
+        })
     }
 
     componentDidMount() {
-        // create map
+         // create map
         const myMap = L.map('map').setView([36.1218284, -86.7516844], 13);
 
         L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
@@ -43,8 +38,6 @@ class ScootMap extends Component {
 
         // L.marker([36.1218284, -86.7516844]).addTo(myMap).bindPopup("<b>Hello world!</b><br>I am a popup.")
         this.addScootersToMap(myMap)
-        console.log("ho", this.props.userLat)
-
     }
 
 
