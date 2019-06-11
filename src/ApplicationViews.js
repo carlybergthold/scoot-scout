@@ -15,7 +15,6 @@ class ApplicationViews extends Component {
       spins: []
     }
 
-
     componentDidMount() {
       API.getUserLocation()
       .then(user => {
@@ -27,10 +26,16 @@ class ApplicationViews extends Component {
       })
     }
 
+    addBirdToMap = () => {
+      return API.getBird(this.state.userLat, this.state.userLng).then(r => {
+          console.log(this.state.userLat, r)
+      })
+    }
+
     render() {
       return(<>
         <Route path="/home/" component={Homepage} />
-        <Route path="/map/" render={(props) => <ScootMap {...props} userLat={this.state.userLat} userLng={this.state.userLng} spins={this.state.spins} />} />
+        <Route path="/map/" render={(props) => <ScootMap {...props} userLat={this.state.userLat} userLng={this.state.userLng} spins={this.state.spins} addBirdToMap={this.addBirdToMap} />} />
       </>
       )
     }
