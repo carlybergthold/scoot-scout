@@ -1,0 +1,9 @@
+#homeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btnLink {
+    text-decoration: none;
+}
