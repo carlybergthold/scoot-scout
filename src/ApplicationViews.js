@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { withRouter, Route } from "react-router-dom"
 import API from "./API/apiCalls";
 import ScootMap from "./components/Map/ScootMap";
+import Homepage from "./components/Homepage/Homepage";
 
 
 class ApplicationViews extends Component {
@@ -20,10 +21,7 @@ class ApplicationViews extends Component {
       .then(user => {
         this.setState({userLat: user.location.lat, userLng: user.location.lng})
       })
-    }
-
-    getSpin = () => {
-      API.getSpin()
+      .then(() => API.getSpin())
       .then(r => {
         this.setState({spins: r.data.bikes})
       })
@@ -31,10 +29,8 @@ class ApplicationViews extends Component {
 
     render() {
       return(<>
-        <h1>homepage</h1>
-        <button>Find a Scooter</button>
-        {/* <Route path="/map/" component={ScootMap} /> */}
-        <ScootMap />
+        <Route path="/home/" component={Homepage} />
+        <Route path="/map/" render={(props) => <ScootMap {...props} userLat={this.state.userLat} userLng={this.state.userLng} spins={this.state.spins} />} />
       </>
       )
     }

@@ -11,9 +11,13 @@
     margin-left: 1rem;
 }
 
-ul {
+#navUL {
     list-style-type: none;
     display: flex;
     flex-flow: row wrap;
     margin-right: 2rem;
+}
+
+.navLink {
+    margin-left: 1rem;
 }
