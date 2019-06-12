@@ -9,7 +9,7 @@ import API from "../../API/apiCalls"
 class ScootMap extends Component {
 
     //function to call the Spin API and mark their scooters on the map
-    addSpinToMap = (map) => {
+    addSpinToMap = (map, lat, lng) => {
         var greenIcon = new L.Icon({
             iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -21,7 +21,9 @@ class ScootMap extends Component {
 
         API.getSpin().then(r => {
             r.data.bikes.forEach(scooter => {
-                new L.marker([scooter.lat, scooter.lon], {icon: greenIcon}).addTo(map).bindPopup("Spin Scooter")
+                let spinLat = scooter.lat;
+                let spinLng = scooter.lon;
+                new L.marker([spinLat, spinLng], {icon: greenIcon}).addTo(map).bindPopup(`<h1>Spin Scooter</h1> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${spinLat},${spinLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
             });
         })
     }
@@ -30,7 +32,9 @@ class ScootMap extends Component {
     addBirdToMap = (map, lat, lng) => {
         API.getBird(lat, lng).then(r => {
             r.birds.forEach(scooter => {
-                new L.marker([scooter.location.latitude, scooter.location.longitude]).addTo(map).bindPopup("Bird Scooter")
+                let birdLat = scooter.location.latitude;
+                let birdLng = scooter.location.longitude;
+                new L.marker([birdLat, birdLng]).addTo(map).bindPopup(`<h1>Bird Scooter</h1> <h3>Battery Level: ${scooter.battery_level}</h3> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${birdLat},${birdLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
             });
         })
     }
@@ -39,6 +43,7 @@ class ScootMap extends Component {
     componentDidMount() {
         API.getUserLocation()
         .then(user => {
+            console.log(user.location)
             const lat = user.location.lat;
             const lng = user.location.lng;
             const myMap = L.map('map').setView([lat, lng], 13);
@@ -59,8 +64,10 @@ class ScootMap extends Component {
                 radius: 150
             }).bindPopup("You are Here").addTo(myMap);
 
-            this.addSpinToMap(myMap)
+            this.addSpinToMap(myMap, lat, lng)
             this.addBirdToMap(myMap, lat, lng)
+
+            // https://www.google.com/maps/dir/?api=1&origin=36,-86&destination=37,-86
 
         })
     }
