@@ -8,6 +8,7 @@ import API from "../../API/apiCalls"
 
 class ScootMap extends Component {
 
+    //function to call the Spin API and mark their scooters on the map
     addSpinToMap = (map) => {
         var greenIcon = new L.Icon({
             iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
@@ -25,32 +26,44 @@ class ScootMap extends Component {
         })
     }
 
-    componentDidMount() {
-        console.log(this.props.userLat, "WHY")
-         // create map
-        const myMap = L.map('map').setView([36.1218284, -86.7516844], 13);
-
-        L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            id: 'mapbox.streets',
-            maxZoom: 16,
-            accessToken: apiKeys.mapBoxToken
-        }
-        ).addTo(myMap);
-
-        //show the user location
-        L.circle([36.1218284, -86.7516844], {
-            color: 'red',
-            fillColor: '#f03',
-            fillOpacity: 0.5,
-            radius: 150
-        }).bindPopup("You are Here").addTo(myMap);
-
-        // L.marker([36.1218284, -86.7516844]).addTo(myMap).bindPopup("<b>Hello world!</b><br>I am a popup.")
-        this.addSpinToMap(myMap)
-        this.props.addBirdToMap()
+    //function to call the Bird API and mark their scooters on the map
+    addBirdToMap = (map, lat, lng) => {
+        API.getBird(lat, lng).then(r => {
+            r.birds.forEach(scooter => {
+                new L.marker([scooter.location.latitude, scooter.location.longitude]).addTo(map).bindPopup("Bird Scooter")
+            });
+        })
     }
 
+
+    componentDidMount() {
+        API.getUserLocation()
+        .then(user => {
+            const lat = user.location.lat;
+            const lng = user.location.lng;
+            const myMap = L.map('map').setView([lat, lng], 13);
+
+            L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                id: 'mapbox.streets',
+                maxZoom: 16,
+                accessToken: apiKeys.mapBoxToken
+            }
+            ).addTo(myMap);
+
+            //show the user location
+            L.circle([lat, lng], {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                radius: 150
+            }).bindPopup("You are Here").addTo(myMap);
+
+            this.addSpinToMap(myMap)
+            this.addBirdToMap(myMap, lat, lng)
+
+        })
+    }
 
     render() {
         return (<div id="map"></div>)
