@@ -17,7 +17,18 @@ const API = {
                         "Authorization":  `${apiKeys.birdToken}`,
                         "Device-id": `${apiKeys.birdDeviceId}`,
                         "App-Version": "3.0.5",
-                        "Location": `{"latitude":${lat},"longitude":${lng},"altitude":500,"accuracy":100,"speed":-1,"heading":-1}`
+                        "Location": `{"latitude":${lat},"longitude":${lng}}`
+                    }
+        })
+                    .then(w => w.json())
+    },
+    getBirds: () => {
+        return fetch(`https://api.bird.co/bird/nearby?latitude=36.130159&longitude=-86.775379&radius=1000`, {
+                    headers: {
+                        "Authorization":  `${apiKeys.birdToken}`,
+                        "Device-id": `${apiKeys.birdDeviceId}`,
+                        "App-Version": "3.0.5",
+                        "Location": `{"latitude":36.130159,"longitude":-86.775379}`
                     }
         })
                     .then(w => w.json())
