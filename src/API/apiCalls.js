@@ -22,21 +22,26 @@ const API = {
         })
                     .then(w => w.json())
     },
-    getLime: (lat, lng) => {
-        return fetch(`http://localhost:6060/api/lime/v1/views/map?ne_lat=${lat}&ne_lng=${lng}&sw_lat=${lat}&sw_lng=${lng}&user_latitude=${lat}&user_longitude=${lng}&zoom=16`, {
-                    headers: {"Authorization":  `${apiKeys.limeKey}`, "Content-Type": "application/json"},
-                    credentials: 'include'
-        })
+    //opendata might show all scooters even if not free/charged
+    getLime: () => {
+        return fetch("https://data.nashville.gov/resource/ntar-zcjt.json")
+                    .then(w => w.json())
+    },
+    //opendata might show all scooters even if not free/charged
+    getJump: () => {
+        return fetch("https://data.nashville.gov/resource/jwwr-v4rf.json")
+                    .then(w => w.json())
+    },
+    //opendata might show all scooters even if not free/charged
+    getLyft: () => {
+        return fetch("https://data.nashville.gov/resource/bmb2-fucd.json")
                     .then(w => w.json())
     },
     getSpin: () => {
         return fetch("https://web.spin.pm/api/gbfs/v1/nashville/free_bike_status")
         .then(w => w.json())
-    },
-    getDirections: () => {
-        return fetch(`https://api.mapbox.com/directions/v5/mapbox/walking/-86.7516844,36.121892;-86.95,36.22?access_token=${apiKeys.mapBoxToken}`)
-        .then(w => w.json())
     }
 }
 
 export default API
+

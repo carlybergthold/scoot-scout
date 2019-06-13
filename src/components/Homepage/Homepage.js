@@ -5,6 +5,11 @@ import "./Homepage.css"
 
 class Homepage extends Component {
 
+
+    // ok = () => {
+    //     navigator.geolocation.getCurrentPosition()
+    // }
+
     render() {
         return (
             <div id="homeContainer">
@@ -15,7 +20,7 @@ class Homepage extends Component {
                     <li>Bird</li>
                     <li>Spin</li>
                 </ul>
-                <button><Link className="btnLink" to="/map">Find a Scooter</Link></button>
+                <button><Link to="/map/" className="btnLink">Find Scooters!</Link></button>
             </div>
         )
     }
