@@ -21,3 +21,25 @@
 .navLink {
     margin-left: 1rem;
 }
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    z-index: 2;
+}
+
+#addLocationBtn {
+    background-color: blue;
+    color: white;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+}
+
+.card-body {
+    background-color: white;
+    height: 10rem;
+}

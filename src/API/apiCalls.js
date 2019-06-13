@@ -22,22 +22,19 @@ const API = {
         })
                     .then(w => w.json())
     },
-    getBirds: () => {
-        return fetch(`https://api.bird.co/bird/nearby?latitude=36.130159&longitude=-86.775379&radius=1000`, {
-                    headers: {
-                        "Authorization":  `${apiKeys.birdToken}`,
-                        "Device-id": `${apiKeys.birdDeviceId}`,
-                        "App-Version": "3.0.5",
-                        "Location": `{"latitude":36.130159,"longitude":-86.775379}`
-                    }
-        })
+    //opendata might show all scooters even if not free/charged
+    getLime: () => {
+        return fetch("https://data.nashville.gov/resource/ntar-zcjt.json")
                     .then(w => w.json())
     },
-    getLime: (lat, lng) => {
-        return fetch(`http://localhost:6060/api/lime/v1/views/map?ne_lat=${lat}&ne_lng=${lng}&sw_lat=${lat}&sw_lng=${lng}&user_latitude=${lat}&user_longitude=${lng}&zoom=16`, {
-                    headers: {"Authorization":  `${apiKeys.limeKey}`, "Content-Type": "application/json"},
-                    credentials: 'include'
-        })
+    //opendata might show all scooters even if not free/charged
+    getJump: () => {
+        return fetch("https://data.nashville.gov/resource/jwwr-v4rf.json")
+                    .then(w => w.json())
+    },
+    //opendata might show all scooters even if not free/charged
+    getLyft: () => {
+        return fetch("https://data.nashville.gov/resource/bmb2-fucd.json")
                     .then(w => w.json())
     },
     getSpin: () => {
@@ -47,3 +44,4 @@ const API = {
 }
 
 export default API
+

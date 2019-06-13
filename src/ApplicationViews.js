@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 import { withRouter, Route } from "react-router-dom"
-import API from "./API/apiCalls";
 import ScootMap from "./components/Map/ScootMap";
 import Homepage from "./components/Homepage/Homepage";
 
