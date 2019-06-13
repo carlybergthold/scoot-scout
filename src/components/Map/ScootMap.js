@@ -110,17 +110,29 @@ class ScootMap extends Component {
     getUserAddress = (map) => {
         const myProvider = new OpenStreetMapProvider();
 
+        var violetIcon = new L.Icon({
+            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
         const searchControl = new GeoSearchControl({
             provider: myProvider,
             autoComplete: true,
             showMarker: true,
             showPopup: true,
+            marker: {
+                icon: violetIcon
+            },
             popupFormat: ({ result }) => result.label,
             maxMarkers: 1,
             retainZoomLevel: false,
             animateZoom: true,
             autoClose: false,
-            searchLabel: 'Enter address',
+            searchLabel: 'Enter a different address',
             keepResult: false
         });
         map.addControl(searchControl);
@@ -129,7 +141,6 @@ class ScootMap extends Component {
             console.log("hi")
             API.getUserLocation()
             .then(user => {
-                console.log("user location", user.location)
                 const lat = user.location.lat;
                 const lng = user.location.lng;
                 map.setView([lat, lng], 14);
@@ -173,7 +184,7 @@ class ScootMap extends Component {
     render() {
         return (<div>
             <div id="map"></div>
-        <Footer />
+        {/* <Footer /> */}
         </div>)
     }
 }

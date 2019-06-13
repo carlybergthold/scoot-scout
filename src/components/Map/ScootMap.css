@@ -2,3 +2,42 @@
     height: 100vh;
     z-index: 1;
 }
+
+.geosearch {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    right: 2rem;
+}
+
+form {
+   background-color: white;
+   border: 1px solid black;
+   padding: 1rem;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+}
+
+.leaflet-touch .leaflet-bar {
+    border: none;
+}
+
+.glass {
+    width: 15rem;
+    height: 28px;
+    margin-right: 10px;
+}
+
+.leaflet-bar a {
+    border: 1px solid gray;
+}
+
+.leaflet-bar a:last-child {
+    border: 1px solid black;
+    border-bottom-left-radius: 0px;
+}
+
+.leaflet-bar-part .leaflet-bar-part-single a {
+    display: none;
+}
