@@ -4,6 +4,10 @@ import L from 'leaflet'
 import "./ScootMap.css"
 import apiKeys from "../../API/apiKeys";
 import API from "../../API/apiCalls"
+import Footer from "../Nav/Footer";
+import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
+
+
 
 class ScootMap extends Component {
 
@@ -103,6 +107,36 @@ class ScootMap extends Component {
         })
     }
 
+    getUserAddress = (map) => {
+        const myProvider = new OpenStreetMapProvider();
+
+        const searchControl = new GeoSearchControl({
+            provider: myProvider,
+            autoComplete: true,
+            showMarker: true,
+            showPopup: true,
+            popupFormat: ({ result }) => result.label,
+            maxMarkers: 1,
+            retainZoomLevel: false,
+            animateZoom: true,
+            autoClose: false,
+            searchLabel: 'Enter address',
+            keepResult: false
+        });
+        map.addControl(searchControl);
+        const reset = document.querySelector('.reset');
+        reset.addEventListener('click', function() {
+            console.log("hi")
+            API.getUserLocation()
+            .then(user => {
+                console.log("user location", user.location)
+                const lat = user.location.lat;
+                const lng = user.location.lng;
+                map.setView([lat, lng], 14);
+            })
+        })
+    }
+
     componentDidMount() {
         API.getUserLocation()
         .then(user => {
@@ -132,11 +166,15 @@ class ScootMap extends Component {
             // this.addLyftToMap(myMap, lat, lng)
             // this.addLimeToMap(myMap, lat, lng)
             // this.addJumpToMap(myMap, lat, lng)
+            this.getUserAddress(myMap);
         })
     }
 
     render() {
-        return (<div id="map"></div>)
+        return (<div>
+            <div id="map"></div>
+        <Footer />
+        </div>)
     }
 }
 
