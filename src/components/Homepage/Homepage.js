@@ -5,11 +5,6 @@ import "./Homepage.css"
 
 class Homepage extends Component {
 
-
-    // ok = () => {
-    //     navigator.geolocation.getCurrentPosition()
-    // }
-
     render() {
         return (
             <div id="homeContainer">
