@@ -141,7 +141,7 @@
  }
 
 
-/* SEARCH BAR */
+/* SEARCH ADDRESS BAR */
 #footer {
     position: fixed;
     bottom: 0;
@@ -155,11 +155,11 @@
     width: 50px;
     border-radius: 50px;
     position: fixed;
-    bottom: 15px;
-    left: 15px;
+    bottom: 40px;
+    left: 30px;
+    font-size: 2rem;
 }
 
-.card-body {
-    background-color: white;
-    height: 10rem;
+#addLocationBtn:hover {
+  cursor: pointer;
 }

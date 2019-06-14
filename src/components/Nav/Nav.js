@@ -16,6 +16,7 @@ class TopNav extends Component {
                     <ul id="menu">
                         <Link to="/home"><li>Home</li></Link>
                         <Link to="/map"><li>Find A Scooter</li></Link>
+                        <li>Your Locations</li>
                     </ul>
                 </div>
             </nav>
