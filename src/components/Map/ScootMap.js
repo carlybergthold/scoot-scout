@@ -93,14 +93,12 @@ class ScootMap extends Component {
             const lng = user.location.lng;
             const myMap = L.map('map').setView([lat, lng], 14);
 
-            L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            L.tileLayer("https://api.mapbox.com/styles/v1/carlymita/cjwwjwccr51kh1cpcw995d56n/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2FybHltaXRhIiwiYSI6ImNqd3FoeHZtYjE5cjA0N21nMGhheGk4NXgifQ.jf0Z7pkxDwB17dk-2xPtFw", {
                 id: 'mapbox.streets',
                 maxZoom: 16,
                 accessToken: apiKeys.mapBoxToken
             }
             ).addTo(myMap);
-
 
             //show the user location
             L.circle([lat, lng], {
@@ -120,9 +118,6 @@ class ScootMap extends Component {
         return (<div>
             <div id="map"></div>
             <Footer />
-            {/* <div id="footer">
-                <Button id="addLocationBtn" onClick={this.state.collapse}>Add a Location</Button>
-            </div> */}
         </div>)
     }
 }

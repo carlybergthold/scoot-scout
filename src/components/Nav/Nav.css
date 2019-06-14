@@ -165,6 +165,13 @@
     cursor: pointer;
   }
 
+  #buttonImg {
+    width: 60px;
+    position: fixed;
+    bottom: 34px;
+    left: 20px;
+  }
+
   .hidden {
     display: none;
   }

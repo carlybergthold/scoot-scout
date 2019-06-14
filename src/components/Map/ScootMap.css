@@ -15,8 +15,8 @@
         display: none;
     }
 
-    .leaflet-control-zoom {
-        margin-left: 1rem;
+    .leaflet-top {
+        margin: 1rem 0 0 0.8rem;
     }
 
     .leaflet-bar-part.leaflet-bar-part-single a {
