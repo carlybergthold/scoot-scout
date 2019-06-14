@@ -1,165 +1,172 @@
- /* SIDE NAV */
+@media only screen and (max-width: 600px) {
+ 
+  /* SIDE NAV */
 
- body
- {
-   margin: 0;
-   padding: 0;
-   background: #fff;
-   overflow-x: hidden; /* needed because hiding the menu on the right side is not perfect,  */
- }
+  body
+  {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    overflow-x: hidden; /* needed because hiding the menu on the right side is not perfect,  */
+  }
 
- a
- {
-   text-decoration: none;
-   color: #000;
-   transition: color 0.3s ease;
- }
+  a
+  {
+    text-decoration: none;
+    color: #000;
+    transition: color 0.3s ease;
+  }
 
- a:hover
- {
-   color: tomato;
- }
+  a:hover
+  {
+    color: tomato;
+  }
 
- #menuToggle
- {
-   display: block;
-   position: absolute;
-   top: 30px;
-   right: 30px;
-   z-index: 8;
-   -webkit-user-select: none;
-   user-select: none;
- }
+  #menuToggle
+  {
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    z-index: 8;
+    -webkit-user-select: none;
+    user-select: none;
+  }
 
- #menuToggle input
- {
-   display: block;
-   width: 40px;
-   height: 32px;
-   position: absolute;
-   top: -7px;
-   left: -5px;
-   cursor: pointer;
-   opacity: 0; /* hide this */
-   z-index: 9; /* and place it over the hamburger */
-   -webkit-touch-callout: none;
- }
+  #menuToggle input
+  {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: -7px;
+    left: -5px;
+    cursor: pointer;
+    opacity: 0; /* hide this */
+    z-index: 9; /* and place it over the hamburger */
+    -webkit-touch-callout: none;
+  }
 
- /*
-  * Just a quick hamburger
-  */
- #menuToggle span
- {
-   display: block;
-   width: 33px;
-   height: 4px;
-   margin-bottom: 5px;
-   position: relative;
-   background: #000;
-   border-radius: 3px;
-   z-index: 8;
-   transform-origin: 4px 0px;
-   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-               background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-               opacity 0.55s ease;
- }
+  /*
+    * Just a quick hamburger
+    */
+  #menuToggle span
+  {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    background: #000;
+    border-radius: 3px;
+    z-index: 8;
+    transform-origin: 4px 0px;
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                opacity 0.55s ease;
+  }
 
- #menuToggle span:first-child
- {
-   transform-origin: 0% 0%;
- }
+  #menuToggle span:first-child
+  {
+    transform-origin: 0% 0%;
+  }
 
- #menuToggle span:nth-last-child(2)
- {
-   transform-origin: 0% 100%;
- }
+  #menuToggle span:nth-last-child(2)
+  {
+    transform-origin: 0% 100%;
+  }
 
- /* 
-  * Transform all the slices of hamburger
-  * into a crossmark.
-  */
- #menuToggle input:checked ~ span
- {
-   opacity: 1;
-   transform: rotate(45deg) translate(-2px, -1px);
-   background: #232323;
- }
+  /* 
+    * Transform all the slices of hamburger
+    * into a crossmark.
+    */
+  #menuToggle input:checked ~ span
+  {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: #232323;
+  }
 
- /*
-  * But let's hide the middle one.
-  */
- #menuToggle input:checked ~ span:nth-last-child(3)
- {
-   opacity: 0;
-   transform: rotate(0deg) scale(0.2, 0.2);
- }
+  /*
+    * But let's hide the middle one.
+    */
+  #menuToggle input:checked ~ span:nth-last-child(3)
+  {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+  }
 
- /*
-  * Ohyeah and the last one should go the other direction
-  */
- #menuToggle input:checked ~ span:nth-last-child(2)
- {
-   opacity: 1;
-   transform: rotate(-45deg) translate(0, -1px);
- }
+  /*
+    * Ohyeah and the last one should go the other direction
+    */
+  #menuToggle input:checked ~ span:nth-last-child(2)
+  {
+    opacity: 1;
+    transform: rotate(-45deg) translate(0, -1px);
+  }
 
- /*
-  * Make this absolute positioned
-  * at the top left of the screen
-  */
- #menu
- {
-   position: absolute;
-   width: 200px;
-   height: 100vh;
-   margin: -100px 0 0 0;
-   padding: 50px;
-   padding-top: 125px;
-   right: -100px;
-   background: #ededed;
-   list-style-type: none;
-   -webkit-font-smoothing: antialiased;
-   /* to stop flickering of text in safari */
-   transform-origin: 0% 0%;
-   transform: translate(100%, 0);
-   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
- }
+  /*
+    * Make this absolute positioned
+    * at the top left of the screen
+    */
+  #menu
+  {
+    position: absolute;
+    width: 200px;
+    height: 100vh;
+    margin: -100px 0 0 0;
+    padding: 50px;
+    padding-top: 125px;
+    right: -100px;
+    background: #ededed;
+    list-style-type: none;
+    -webkit-font-smoothing: antialiased;
+    /* to stop flickering of text in safari */
+    transform-origin: 0% 0%;
+    transform: translate(100%, 0);
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+  }
 
- #menu li
- {
-   padding: 10px 0;
-   font-size: 22px;
- }
+  #menu li
+  {
+    padding: 10px 0;
+    font-size: 22px;
+  }
 
- /*
-  * And let's fade it in from the left
-  */
- #menuToggle input:checked ~ ul
- {
-   transform: scale(1.0, 1.0);
-   opacity: 1;
- }
+  /*
+    * And let's fade it in from the left
+    */
+  #menuToggle input:checked ~ ul
+  {
+    transform: scale(1.0, 1.0);
+    opacity: 1;
+  }
 
 
-/* SEARCH ADDRESS BAR */
-#footer {
-    position: fixed;
-    bottom: 0;
-    z-index: 2;
-}
+  /* SEARCH ADDRESS BAR */
+  #footer {
+      position: fixed;
+      bottom: 0;
+      z-index: 2;
+  }
 
-#addLocationBtn {
-    background-color: blue;
-    color: white;
-    height: 50px;
-    width: 50px;
-    border-radius: 50px;
-    position: fixed;
-    bottom: 40px;
-    left: 30px;
-    font-size: 2rem;
-}
+  #addLocationBtn {
+      background-color: lightblue;
+      color: black;
+      height: 30px;
+      width: 60px;
+      position: fixed;
+      bottom: 34px;
+      left: 20px;
+      font-size: 1.6rem;
+  }
 
-#addLocationBtn:hover {
-  cursor: pointer;
+  #addLocationBtn:hover {
+    cursor: pointer;
+  }
+
+  .hidden {
+    display: none;
+  }
+
 }

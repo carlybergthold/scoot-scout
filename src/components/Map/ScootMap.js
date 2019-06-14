@@ -101,6 +101,7 @@ class ScootMap extends Component {
             }
             ).addTo(myMap);
 
+
             //show the user location
             L.circle([lat, lng], {
                 color: 'red',

@@ -15,10 +15,10 @@ class Footer extends Component {
     const geosearch = document.querySelector('.geosearch');
     this.setState(state => ({ hidden: !state.hidden }));
     if (this.state.hidden) {
-      this.setState(state => ({ text: "+" }))
+      this.setState(state => ({ text: "-" }))
       geosearch.style.display = "block";
     } else {
-      this.setState(state => ({ text: "-" }))
+      this.setState(state => ({ text: "+" }))
       geosearch.style.display = "none";
     }
   }
