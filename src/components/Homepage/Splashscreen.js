@@ -10,7 +10,7 @@ class Splashscreen extends Component {
     render() {
         return (
             <div id="splashscreen">
-                <img src={logo} id="splashLogo"></img>
+                <img src={scooter3} id="splashLogo"></img>
             </div>
         )
     }
