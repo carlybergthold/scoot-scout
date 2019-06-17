@@ -80,7 +80,7 @@ class ScootMap extends Component {
     }
 
     addScootsWest = (map, lat, lng) => {
-        for (let index = 1; index < 2; index++) {
+        for (let index = 1; index < 5; index++) {
             let newLat = lat - (0.0008 * index);
             let newLng = lng - (0.008 * index);
             API.multibike(newLat, newLng).then(r => {
@@ -89,7 +89,7 @@ class ScootMap extends Component {
                 r.data.vehicles.forEach(scooter => {
                     let scootLat = scooter.lat;
                     let scootLng = scooter.lng;
-                    new L.marker([scootLat, scootLng]).addTo(map).bindPopup(`<h1>${scooter.provider.name}</h1> <h3>Battery Level: ${scooter.battery}</h3> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${scootLat},${scootLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
+                    new L.marker([scootLat, scootLng], {icon: this.orangeIcon}).addTo(map).bindPopup(`<h1>${scooter.provider.name}</h1> <h3>Battery Level: ${scooter.battery}</h3> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${scootLat},${scootLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
                 });
             })
         }
@@ -148,7 +148,7 @@ class ScootMap extends Component {
             marker: {
                 icon: violetIcon
             },
-            popupFormat: ({ result }) => result.label,
+            popupFormat: ({ result }) => result.label[0],
             maxMarkers: 1,
             retainZoomLevel: false,
             animateZoom: true,
@@ -189,17 +189,17 @@ class ScootMap extends Component {
                 color: 'red',
                 fillColor: '#f03',
                 fillOpacity: 0.5,
-                radius: 50
-            }).bindPopup("You are Here").addTo(myMap).openPopup();
+                radius: 100
+            }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup();
 
             this.addSpinToMap(myMap, lat, lng)
             this.addBirdToMap(myMap, lat, lng)
             this.getUserAddress(myMap);
             this.addScootsToMap(myMap, lat, lng)
-            this.addScootsEast(myMap, lat, lng)
+            // this.addScootsEast(myMap, lat, lng)
             this.addScootsWest(myMap, lat, lng)
-            this.addScootsNorth(myMap, lat, lng)
-            this.addScootsSouth(myMap, lat, lng)
+            // this.addScootsNorth(myMap, lat, lng)
+            // this.addScootsSouth(myMap, lat, lng)
         })
     }
 

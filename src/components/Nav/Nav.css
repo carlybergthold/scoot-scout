@@ -17,11 +17,6 @@
     transition: color 0.3s ease;
   }
 
-  a:hover
-  {
-    color: tomato;
-  }
-
   #menuToggle
   {
     display: block;
@@ -125,12 +120,20 @@
     transform-origin: 0% 0%;
     transform: translate(100%, 0);
     transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+    font-family: 'Quicksand', sans-serif;
+
   }
 
   #menu li
   {
     padding: 10px 0;
     font-size: 22px;
+  }
+
+  #menu li:hover
+  {
+    background: #ffe100;
   }
 
   /*
@@ -166,14 +169,16 @@
   }
 
   #buttonImg {
-    width: 60px;
+    height: 50px;
+    width: 50px;
     position: fixed;
-    bottom: 34px;
-    left: 20px;
-  }
-
-  .hidden {
-    display: none;
+    bottom: 15px;
+    margin-left: 8.2rem;
+    background-color: #ffe100;
+    border-radius: 150px;
+    font-size: 2rem;
+    border: 1px solid black;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.363);
   }
 
 }

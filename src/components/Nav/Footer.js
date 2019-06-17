@@ -1,8 +1,5 @@
 import React, { Component } from "react"
 import "./Nav.css"
-import { Button } from 'reactstrap';
-import placeholder from "./placeholder.png"
-
 
 
 class Footer extends Component {
@@ -27,7 +24,7 @@ class Footer extends Component {
     render() {
         return (
             <div id="footer">
-                  <img src={placeholder} id="buttonImg" onClick={this.toggle}></img>
+                  <button id="buttonImg" onClick={this.toggle}>{this.state.text}</button>
             </div>
             )
     }

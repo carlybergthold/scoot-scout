@@ -11,18 +11,24 @@
 
     #splashBtn {
         margin-top: 2rem;
-        background-color: white;
-        padding: 0.4rem;
+        background-color: black;
+        padding: 0.5rem;
         border-radius: 7px;
     }
 
     .btnLink {
         text-decoration: none;
         font-size: 1.2rem;
+        font-weight: 600;
+        color: white;
+        font-family: 'Quicksand', sans-serif;
     }
 
     #splashLogo {
         width: 4rem;
     }
 
+    h1 {
+        font-family: 'Quicksand', sans-serif;
+    }
 }

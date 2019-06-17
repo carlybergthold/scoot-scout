@@ -24,3 +24,6 @@ yarn-error.log*
 
 # API tokens
 /src/API/apiKeys.js
+
+# user database
+userdatabase.json
