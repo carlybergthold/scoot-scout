@@ -1,43 +1,56 @@
-#map {
-    height: 100vh;
-    z-index: 1;
-}
+@media only screen and (max-width: 600px) {
 
-.geosearch {
-    position: fixed;
-    bottom: 2rem;
-    left: 2rem;
-    right: 2rem;
-}
+    #map {
+        height: 100vh;
+        z-index: 1;
+    }
 
-form {
-   background-color: white;
-   border: 1px solid black;
-   padding: 1rem;
-   display: flex;
-   flex-direction: row;
-   justify-content: center;
-}
+    .geosearch {
+        position: fixed;
+        bottom: 2rem;
+        left: 0.5rem;
+        background-color: white;
+        height: 10rem;
+        margin-right: 1rem;
+        display: none;
+    }
 
-.leaflet-touch .leaflet-bar {
-    border: none;
-}
+    .leaflet-top {
+        margin: 1rem 0 0 0.8rem;
+    }
 
-.glass {
-    width: 15rem;
-    height: 28px;
-    margin-right: 10px;
-}
+    .leaflet-bar-part.leaflet-bar-part-single a {
+        display: none;
+    }
 
-.leaflet-bar a {
-    border: 1px solid gray;
-}
+    form {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    }
 
-.leaflet-bar a:last-child {
-    border: 1px solid black;
-    border-bottom-left-radius: 0px;
-}
+    .glass {
+        width: 15rem;
+        height: 28px;
+        margin-right: 10px;
+    }
 
-.leaflet-bar-part .leaflet-bar-part-single a {
-    display: none;
+    .reset {
+        border: 1px solid lightgray;
+        margin-right: 10px;
+    }
+
+    .active {
+        cursor: pointer;
+    }
+
+    .active div:hover {
+        background-color: lightblue;
+    }
+
+    .leaflet-touch {
+        box-shadow: 0 1px 5px rgba(0,0,0,0.65)
+    }
+
 }
