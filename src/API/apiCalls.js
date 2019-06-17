@@ -1,21 +1,21 @@
 import apiKeys from "./apiKeys";
 
 const API = {
-    // multibike: () => {
-    //     require('isomorphic-fetch');
-    //     fetch('https://api.multicycles.org/v1', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ query: "query ($lat: Float!, $lng: Float!) {\n  vehicles(lat: $lat, lng: $lng) {\n\t\tid\n  }\n}","variables":{"lat":48.856614,"lng":2.352222}
-    //     })
-    //     .then(res => res.json())
-    //     .then(res => console.log(res.data))
-    // },
+    multibike: (lat, lng) => {
+        return fetch(`https://api.multicycles.org/v1?access_token=${apiKeys.multiCycles}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: `{"query":"query ($lat: Float!, $lng: Float!) {vehicles(lat: $lat, lng: $lng) {id,type,attributes,lat,lng,battery,provider{name}}}","variables":{"lat":${lat},"lng":${lng}}}`
+        })
+            .then(e => e.json())
+    },
     getUserLocation: () => {
         return fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=${apiKeys.googleKey}`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
             body: JSON.stringify()
         })
@@ -31,6 +31,12 @@ const API = {
                     }
         })
                     .then(w => w.json())
+    },
+    getCoordsFromAddress: () => {
+        return fetch(`https://nominatim.openstreetmap.org/search?q=2210+white+avenue,+nashville&format=json&polygon=1&addressdetails=1`)
+
+        .then(e => e.json())
+        .then(r => console.log(r[0].lat, r[0].lon))
     },
     getLime: () => {
         return fetch('https://cors-anywhere.herokuapp.com/https://web-production.lime.bike/api/rider/v1/views/map?ne_lat=36.130159&ne_lng=-86.775379&sw_lat=36.130159&sw_lng=-86.775379&user_latitude=36.130159&user_longitude=-86.775379&zoom=16', {

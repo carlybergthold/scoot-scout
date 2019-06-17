@@ -27,9 +27,7 @@ class Footer extends Component {
     render() {
         return (
             <div id="footer">
-                {/* <Button id="addLocationBtn" onClick={this.toggle}> */}
                   <img src={placeholder} id="buttonImg" onClick={this.toggle}></img>
-                  {/* </Button> */}
             </div>
             )
     }
