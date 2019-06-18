@@ -32,28 +32,28 @@ const API = {
         })
                     .then(w => w.json())
     },
-    getCoordsFromAddress: () => {
-        return fetch(`https://nominatim.openstreetmap.org/search?q=2210+white+avenue,+nashville&format=json&polygon=1&addressdetails=1`)
+    // getCoordsFromAddress: () => {
+    //     return fetch(`https://nominatim.openstreetmap.org/search?q=2210+white+avenue,+nashville&format=json&polygon=1&addressdetails=1`)
 
-        .then(e => e.json())
-        .then(r => console.log(r[0].lat, r[0].lon))
-    },
-    addNewUser: (newUserObject) => {
-        return fetch("http://localhost:8088/users", {
+    //     .then(e => e.json())
+    //     .then(r => console.log(r[0].lat, r[0].lon))
+    // },
+    post: (path, object) => {
+        return fetch(`http://localhost:8088/${path}`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
             },
-            body: JSON.stringify(newUserObject)
+            body: JSON.stringify(object)
             })
             .then(response => response.json());
     },
-    getUser(users, params) {
-        return fetch(`${users}${params}`)
+    get: (path, id) => {
+        return fetch(`http://localhost:8088/${path}/${id}`)
             .then(response => response.json());
     },
-    getUserFromID(users, id) {
-        return fetch(`${users}/${id}`)
+    getLocations: (id) => {
+        return fetch(`http://localhost:8088/users/${id}?_embed=savedLocations`)
             .then(response => response.json());
     },
     getLime: () => {

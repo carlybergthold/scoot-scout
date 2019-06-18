@@ -1,0 +1,32 @@
+@media only screen and (max-width: 600px) {
+
+    #SavedLocationsContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffe100;
+        height: 100vh;
+    }
+
+    #locations {
+        padding: 0 3rem 0 3rem;
+    }
+
+    #locations section {
+        border: 2px solid black;
+        margin: 1rem;
+        padding: 1rem;
+        background-color: white;
+    }
+
+    .locationOpenBtn {
+        background-color: black;
+        color: white;
+        padding: 0.3rem;
+        border-radius: 7px;
+        font-size: 1rem;
+        font-weight: 600;
+        font-family: Quicksand;
+    }
+}

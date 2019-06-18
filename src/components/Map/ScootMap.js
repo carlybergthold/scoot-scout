@@ -148,7 +148,7 @@ class ScootMap extends Component {
             marker: {
                 icon: violetIcon
             },
-            popupFormat: ({ result }) => result.label[0],
+            popupFormat: ({ result }) => result.label + "</br><button id='saveAddBtn'>Save to My Locations</button>",
             maxMarkers: 1,
             retainZoomLevel: false,
             animateZoom: true,
@@ -156,7 +156,19 @@ class ScootMap extends Component {
             searchLabel: 'Enter a different address',
             keepResult: false
         });
-        API.getCoordsFromAddress()
+
+        map.on('geosearch/showlocation', result => {
+            let addressObj = {
+                address: result.location.label,
+                lat: result.location.y,
+                lng: result.location.x,
+                userId: 1
+            }
+            document.querySelector("#saveAddBtn").addEventListener("click", function() {
+                API.post("savedLocations", addressObj).then(console.log("saved"))
+            })
+        })
+
         map.addControl(searchControl);
         const reset = document.querySelector('.reset');
         reset.addEventListener('click', function() {
@@ -197,7 +209,7 @@ class ScootMap extends Component {
             this.getUserAddress(myMap);
             this.addScootsToMap(myMap, lat, lng)
             // this.addScootsEast(myMap, lat, lng)
-            this.addScootsWest(myMap, lat, lng)
+            // this.addScootsWest(myMap, lat, lng)
             // this.addScootsNorth(myMap, lat, lng)
             // this.addScootsSouth(myMap, lat, lng)
         })

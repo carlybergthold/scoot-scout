@@ -4,10 +4,19 @@
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-family: 'Quicksand', sans-serif;
   }
 
   a:hover {
     cursor: pointer;
+  }
+
+  .topLogo {
+    width: 4rem;
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    width: 3rem;
   }
 
 }
