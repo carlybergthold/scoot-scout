@@ -7,38 +7,60 @@
 
     .geosearch {
         position: fixed;
-        bottom: 2rem;
+        bottom: 4rem;
         left: 0.5rem;
+        right: 0.5rem;
         background-color: white;
         height: 10rem;
         margin-right: 1rem;
         display: none;
+        border-radius: 25px;
+        overflow: scroll;
     }
 
     .leaflet-top {
         margin: 1rem 0 0 0.8rem;
     }
 
+    .leaflet-bar {
+        border: 1px solid gray;
+    }
+
     .leaflet-bar-part.leaflet-bar-part-single a {
         display: none;
     }
 
+    .leaflet-bar a, .leaflet-bar a:hover {
+        background-color: #fff;
+        text-decoration: none;
+        color: black;
+        border-bottom: 1px solid white;
+    }
+
     form {
-    padding: 1rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
     }
 
     .glass {
         width: 15rem;
         height: 28px;
         margin-right: 10px;
+        border: 1px solid gray;
     }
 
     .reset {
-        border: 1px solid lightgray;
+        border: 1px solid white;
+        border-bottom: 1px solid white;
         margin-right: 10px;
+        color: white;
+        background-color: white;
+        position: absolute;
+        top: 0.6rem;
+        right: 0.1rem;
     }
 
     .active {
@@ -46,11 +68,35 @@
     }
 
     .active div:hover {
-        background-color: lightblue;
+        background-color: #ffe100;
     }
 
     .leaflet-touch {
-        box-shadow: 0 1px 5px rgba(0,0,0,0.65)
+        box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+    }
+
+    .leaflet-popup-content-wrapper {
+        background: #ffe100;
+        color: #000;
+        border: 1px solid black;
+    }
+
+    .leaflet-popup-tip {
+        background:black;
+    }
+
+    .leaflet-popup-content {
+        font-family: 'Quicksand', sans-serif;
+        text-align: center;
+    }
+
+    .leaflet-popup-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .leaflet-popup-content a {
+        font-size: 1rem;
+        color: rgb(38, 89, 148);
     }
 
 }

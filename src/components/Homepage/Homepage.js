@@ -11,13 +11,7 @@ class Homepage extends Component {
         return (
             <div id="homeContainer">
                 <img src={scooter3} id="splashLogo"></img>
-                <h1>Scoot Scout</h1>
-                {/* <h2>Witty Header</h2>
-                <ul id="homeUL">
-                    <li>Lime</li>
-                    <li>Bird</li>
-                    <li>Spin</li>
-                </ul> */}
+                <h1>scoot scout</h1>
                 <button id="splashBtn"><Link to="/map/" className="btnLink">Find Scooters!</Link></button>
             </div>
         )

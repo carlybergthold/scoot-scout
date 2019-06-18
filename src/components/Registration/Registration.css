@@ -1,0 +1,39 @@
+@media only screen and (max-width: 600px) {
+
+    #registerContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffe100;
+        height: 100vh;
+    }
+
+    #registerForm {
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+    }
+
+    #registerForm input {
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        padding: 0.4rem;
+    }
+
+    #registerForm label {
+        margin-bottom: 0.2rem;
+    }
+
+    h1, form, input {
+        font-family: 'Quicksand', sans-serif;
+    }
+
+    #submitBtn {
+        background-color: black;
+        color: white;
+        font-size: 1rem;
+        padding: 0.4rem;
+        border-radius: 7px;
+    }
+}
