@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { withRouter } from 'react-router'
+import { withRouter, Link } from 'react-router-dom'
 import "./SavedLocations.css"
 import scooter3 from "../Homepage/scooter3.png"
 import API from "../../API/apiCalls";
@@ -21,7 +21,15 @@ class SavedLocations extends Component {
                 <img src={scooter3} className="topLogo"></img>
                 <h1>My Locations</h1>
                 <div id="locations">
-                    {this.state.savedLocations.map(location => {return <section><p>{location.address}</p><button className="locationOpenBtn">Open in Map</button></section>})}
+                    {this.state.savedLocations.map(location => {return <section key={location.id} className={location.location}><p>{location.address}</p>
+                    <button className="locationOpenBtn">
+                        <Link
+                        to={{
+                        pathname: '/map',
+                        state: { startingLat: location.lat, startingLng: location.lng }
+                    }}>Open in Map</Link>
+                    </button>
+                    </section>})}
                 </div>
             </div>
         )

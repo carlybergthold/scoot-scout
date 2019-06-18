@@ -10,6 +10,10 @@ import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 
 class ScootMap extends Component {
 
+    state = {
+        idk: true
+    }
+
     orangeIcon = new L.Icon({
         iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -160,7 +164,7 @@ class ScootMap extends Component {
         map.on('geosearch/showlocation', result => {
             let addressObj = {
                 address: result.location.label,
-                lat: result.location.y,
+                location: result.location.y,
                 lng: result.location.x,
                 userId: 1
             }
@@ -182,37 +186,32 @@ class ScootMap extends Component {
     }
 
     componentDidMount() {
-        API.getUserLocation()
-        .then(user => {
-            console.log("user location", user.location)
-            const lat = user.location.lat;
-            const lng = user.location.lng;
-            const myMap = L.map('map').setView([lat, lng], 15);
+        let lat = this.props.startingLat;
+        let lng = this.props.startingLng;
 
-            L.tileLayer("https://api.mapbox.com/styles/v1/carlymita/cjwwjwccr51kh1cpcw995d56n/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2FybHltaXRhIiwiYSI6ImNqd3FoeHZtYjE5cjA0N21nMGhheGk4NXgifQ.jf0Z7pkxDwB17dk-2xPtFw", {
-                id: 'mapbox.streets',
-                maxZoom: 17,
-                accessToken: apiKeys.mapBoxToken
-            }
-            ).addTo(myMap);
+        const myMap = L.map('map').setView([lat, lng], 15);
 
-            //show the user location
-            L.circle([lat, lng], {
-                color: 'red',
-                fillColor: '#f03',
-                fillOpacity: 0.5,
-                radius: 100
-            }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup();
+        L.tileLayer("https://api.mapbox.com/styles/v1/carlymita/cjwwjwccr51kh1cpcw995d56n/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2FybHltaXRhIiwiYSI6ImNqd3FoeHZtYjE5cjA0N21nMGhheGk4NXgifQ.jf0Z7pkxDwB17dk-2xPtFw", {
+            id: 'mapbox.streets',
+            maxZoom: 17,
+            accessToken: apiKeys.mapBoxToken
+        }
+        ).addTo(myMap);
 
-            this.addSpinToMap(myMap, lat, lng)
-            this.addBirdToMap(myMap, lat, lng)
-            this.getUserAddress(myMap);
-            this.addScootsToMap(myMap, lat, lng)
-            // this.addScootsEast(myMap, lat, lng)
-            // this.addScootsWest(myMap, lat, lng)
-            // this.addScootsNorth(myMap, lat, lng)
-            // this.addScootsSouth(myMap, lat, lng)
-        })
+        //show the user location
+        L.circle([lat, lng], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 100
+        }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup();
+
+        // this.addSpinToMap(myMap, lat, lng)
+        // this.addBirdToMap(myMap, lat, lng)
+        // this.getUserAddress(myMap);
+        // this.addScootsToMap(myMap, lat, lng)
+        // this.addScootsWest(myMap, lat, lng)
+    // })
     }
 
     render() {

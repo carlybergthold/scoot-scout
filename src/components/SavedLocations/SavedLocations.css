@@ -22,11 +22,14 @@
 
     .locationOpenBtn {
         background-color: black;
-        color: white;
         padding: 0.3rem;
         border-radius: 7px;
-        font-size: 1rem;
-        font-weight: 600;
+        font-size: 0.9rem;
+        font-weight: 500;
         font-family: Quicksand;
+    }
+
+    #locations a {
+        color: white;
     }
 }
