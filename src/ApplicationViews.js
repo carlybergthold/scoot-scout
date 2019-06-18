@@ -14,6 +14,10 @@ class ApplicationViews extends Component {
     startingLng: ""
   }
 
+  getAddress = (lat, lng) => {
+    this.setState({startingLat: lat, startingLng: lng})
+  }
+
   componentDidMount() {
     API.getUserLocation()
     .then(user => {
@@ -25,15 +29,11 @@ class ApplicationViews extends Component {
     render() {
       return(<>
         <Route path="/home/" component={Homepage} />
-        {/* <Route path="/map/" component={ScootMap} startingLat={this.state.startingLat} startingLng={this.state.startingLng} /> */}
-        <Route path="/map/" render={(props) => {
-              return (<ScootMap startingLat={this.state.startingLat} startingLng={this.state.startingLng} {...props} />)}
-        } />
+        <Route path="/map/" render={(props) => <ScootMap {...props} startingLat={this.state.startingLat} startingLng={this.state.startingLng} />}
+        />
         <Route path="/register/" component={Registration} />
-        {/* <Route path="/locations/" component={SavedLocations} startingLat={this.state.startingLat} startingLng={this.state.startingLng} /> */}
-        <Route path="/locations/" render={(props) => {
-              return (<SavedLocations startingLat={this.state.startingLat} startingLng={this.state.startingLng} {...props} />)}
-        } />
+        <Route path="/locations/" render={(props) => <SavedLocations {...props} startingLat={this.state.startingLat} startingLng={this.state.startingLng} getAddress={this.getAddress} />}
+        />
       </>
       )
     }

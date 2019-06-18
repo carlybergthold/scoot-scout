@@ -10,9 +10,10 @@ import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 
 class ScootMap extends Component {
 
-    state = {
-        idk: true
-    }
+    // state = {
+    //     startingLat: "",
+    //     startingLng: ""
+    // }
 
     orangeIcon = new L.Icon({
         iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
@@ -189,7 +190,7 @@ class ScootMap extends Component {
         let lat = this.props.startingLat;
         let lng = this.props.startingLng;
 
-        const myMap = L.map('map').setView([lat, lng], 15);
+        const myMap = L.map('map').setView([lat, lng], 14);
 
         L.tileLayer("https://api.mapbox.com/styles/v1/carlymita/cjwwjwccr51kh1cpcw995d56n/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2FybHltaXRhIiwiYSI6ImNqd3FoeHZtYjE5cjA0N21nMGhheGk4NXgifQ.jf0Z7pkxDwB17dk-2xPtFw", {
             id: 'mapbox.streets',
@@ -208,13 +209,14 @@ class ScootMap extends Component {
 
         // this.addSpinToMap(myMap, lat, lng)
         // this.addBirdToMap(myMap, lat, lng)
-        // this.getUserAddress(myMap);
+        this.getUserAddress(myMap);
         // this.addScootsToMap(myMap, lat, lng)
         // this.addScootsWest(myMap, lat, lng)
     // })
     }
 
     render() {
+        console.log(this.props)
         return (<div>
             <div id="map"></div>
             <Footer />

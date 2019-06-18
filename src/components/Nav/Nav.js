@@ -26,7 +26,8 @@ class TopNav extends Component {
                     <ul id="menu">
                         <Link to="/home" onClick={this.toggle}><li>Home</li></Link>
                         <Link to="/map" onClick={this.toggle}><li>Find A Scooter</li></Link>
-                        <li>Your Locations</li>
+                        <Link to="/locations" onClick={this.toggle}><li>My Locations</li></Link>
+                        <Link to="/register" onClick={this.toggle}><li>Register</li></Link>
                     </ul>
                 </div>
             </nav>

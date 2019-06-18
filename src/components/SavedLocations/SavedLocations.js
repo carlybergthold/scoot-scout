@@ -24,10 +24,7 @@ class SavedLocations extends Component {
                     {this.state.savedLocations.map(location => {return <section key={location.id} className={location.location}><p>{location.address}</p>
                     <button className="locationOpenBtn">
                         <Link
-                        to={{
-                        pathname: '/map',
-                        state: { startingLat: location.lat, startingLng: location.lng }
-                    }}>Open in Map</Link>
+                        to='/map' onClick={() => this.props.getAddress(location.lat, location.lng)}>Open in Map</Link>
                     </button>
                     </section>})}
                 </div>
