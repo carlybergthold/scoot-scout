@@ -187,7 +187,7 @@ class ScootMap extends Component {
             }
 
             this.addSpinToMap(myMap, lat, lng)
-            this.addBirdToMap(myMap, lat, lng)
+            // this.addBirdToMap(myMap, lat, lng)
             this.getUserAddress(myMap);
             // this.addScootsToMap(myMap, lat, lng)
             // this.addScootsWest(myMap, lat, lng)

@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { withRouter, Route, Redirect } from "react-router-dom"
+import { withRouter, Route } from "react-router-dom"
 import ScootMap from "./components/Map/ScootMap";
 import Homepage from "./components/Homepage/Homepage";
 import Registration from "./components/Registration/Registration";
@@ -37,7 +37,6 @@ class ApplicationViews extends Component {
         const user = matchingUsers[0];
         localStorage.setItem('user', JSON.stringify(user));
         this.setState({userId: user.id});
-        this.props.history.push("/map")
       }
       });
   }

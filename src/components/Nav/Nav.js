@@ -6,18 +6,34 @@ import "./Nav.css"
 class TopNav extends Component {
 
     state = {
-        navLink: "log out"
+        navLink: "log out",
+        class: "hidden"
     }
 
     logout = () => {
         localStorage.removeItem('user');
     }
 
+    login = () => {
+        this.props.history.push('/login')
+    }
+
+    logInOrOut = () => {
+        if (localStorage.getItem('user')) {
+            localStorage.removeItem('user');
+            this.props.history.push('/home')
+            console.log("remove localstorage and redirect to home")
+        } else {
+            this.props.history.push('/login')
+            console.log("redirect to login")
+        }
+    }
+
     componentDidMount() {
         if (localStorage.getItem('user')) {
-            this.setState(state => ({ navLink: "log out" }))
+            this.setState(state => ({ navLink: "log out", class: "hidden" }))
             } else {
-            this.setState(state => ({ navLink: "log in" }))
+            this.setState(state => ({ navLink: "log in" , class: "registerlink"}))
         }
     }
 
@@ -33,8 +49,8 @@ class TopNav extends Component {
                         <Link to="/home"><li>home</li></Link>
                         <Link to="/map"><li>scoot map</li></Link>
                         <Link to="/locations"><li>my locations</li></Link>
-                        <Link to="/register"><li>register</li></Link>
-                        <p id="logOut" onClick={this.logout}>{this.state.navLink}</p>
+                        <Link to="/register" className={this.state.class}><li>register</li></Link>
+                        <p id="logOut" onClick={this.logInOrOut}>{this.state.navLink}</p>
                     </ul>
                 </div>
             </nav>

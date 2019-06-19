@@ -8,12 +8,18 @@ class Login extends Component {
 
     state = {
         email: "",
-        password: ""
+        password: "",
+        link: "/login"
+    }
+
+    handleLink = () => {
+
     }
 
     handleChange = (e) =>{
         this.setState({[e.target.id]: e.target.value})
     }
+
 
     render() {
         return (
