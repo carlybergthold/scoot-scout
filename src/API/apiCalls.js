@@ -32,12 +32,6 @@ const API = {
         })
                     .then(w => w.json())
     },
-    // getCoordsFromAddress: () => {
-    //     return fetch(`https://nominatim.openstreetmap.org/search?q=2210+white+avenue,+nashville&format=json&polygon=1&addressdetails=1`)
-
-    //     .then(e => e.json())
-    //     .then(r => console.log(r[0].lat, r[0].lon))
-    // },
     post: (path, object) => {
         return fetch(`http://localhost:8088/${path}`, {
             method: "POST",

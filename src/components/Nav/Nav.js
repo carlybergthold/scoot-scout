@@ -5,15 +5,9 @@ import "./Nav.css"
 
 class TopNav extends Component {
 
-    state = {
-        hidden: false
+    logout = () => {
+        localStorage.removeItem('user');
     }
-
-    toggle = () => {
-        const menu = document.querySelector('nav');
-        menu.classList.add("hidden");
-        // this.setState(state => ({ hidden: !state.hidden }));
-      }
 
     render() {
         return (
@@ -24,10 +18,11 @@ class TopNav extends Component {
                     <span></span>
                     <span></span>
                     <ul id="menu">
-                        <Link to="/home" onClick={this.toggle}><li>Home</li></Link>
-                        <Link to="/map" onClick={this.toggle}><li>Find A Scooter</li></Link>
-                        <Link to="/locations" onClick={this.toggle}><li>My Locations</li></Link>
-                        <Link to="/register" onClick={this.toggle}><li>Register</li></Link>
+                        <Link to="/home"><li>Home</li></Link>
+                        <Link to="/map"><li>Find A Scooter</li></Link>
+                        <Link to="/locations"><li>My Locations</li></Link>
+                        <Link to="/register"><li>Register</li></Link>
+                        <p id="logOut" onClick={this.logout}>Log Out</p>
                     </ul>
                 </div>
             </nav>

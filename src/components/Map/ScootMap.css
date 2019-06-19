@@ -1,4 +1,4 @@
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
 
     #map {
         height: 100vh;
@@ -99,4 +99,23 @@
         color: rgb(38, 89, 148);
     }
 
+    .saveAddBtn {
+        margin-top: 0.5rem;
+        background-color: black;
+        padding: 0.5rem;
+        border-radius: 7px;
+        text-decoration: none;
+        font-weight: 600;
+        color: white;
+        font-family: 'Quicksand', sans-serif;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .hide {
+        margin: 0;
+        font-weight: 600;
+    }
 }

@@ -17,18 +17,17 @@ class SavedLocations extends Component {
 
     render() {
         return (
-            <div id="SavedLocationsContainer">
-                <img src={scooter3} className="topLogo"></img>
-                <h1>My Locations</h1>
                 <div id="locations">
+                    <img src={scooter3} className="topLogo" alt="Scoot-Scout-logo"></img>
+                    <h1 id="locationsHeader">my locations</h1>
                     {this.state.savedLocations.map(location => {return <section key={location.id} className={location.location}><p>{location.address}</p>
+                    <div className="btnContainer">
                     <button className="locationOpenBtn">
-                        <Link
-                        to='/map' onClick={() => this.props.getAddress(location.lat, location.lng)}>Open in Map</Link>
+                        <Link to='/map' onClick={() => this.props.getAddress(location.lat, location.lng, location.address)}>Open in Map</Link>
                     </button>
+                    </div>
                     </section>})}
                 </div>
-            </div>
         )
     }
 }
