@@ -118,4 +118,13 @@
         margin: 0;
         font-weight: 600;
     }
+
+    .currentLocationBtn {
+        background: black;
+        color: white;
+        border-radius: 6px;
+        margin-top: 0.4rem;
+        font-weight: 600;
+        font-family: 'Quicksand', sans-serif;
+    }
 }

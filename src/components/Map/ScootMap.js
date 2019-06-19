@@ -101,7 +101,7 @@ class ScootMap extends Component {
             marker: {
                 icon: violetIcon
             },
-            popupFormat: ({ result }) => result.label + "</br><button class='saveAddBtn'>Save to My Locations</button></br><p class='hide hidden'>Saved!</p>",
+            popupFormat: ({ result }) => result.label + "</br><button class='saveAddBtn'>Save to My Locations</button></br><p class='hide hidden'>Saved!</p></br><button class='currentLocationBtn hidden'>Back to Current Location</button>",
             maxMarkers: 1,
             retainZoomLevel: false,
             animateZoom: true,
@@ -120,7 +120,15 @@ class ScootMap extends Component {
             document.querySelector(".saveAddBtn").addEventListener("click", function() {
                 API.post("savedLocations", addressObj)
                 .then(document.querySelector(".hide").classList.remove("hidden"))
+                .then(document.querySelector(".currentLocationBtn").classList.remove("hidden"))
                 .then(document.querySelector(".saveAddBtn").classList.add("hidden"))
+            })
+
+            document.querySelector(".currentLocationBtn").addEventListener("click", function() {
+                API.getUserLocation()
+                .then(user => {
+                    map.setView([user.location.lat, user.location.lng], 14);
+                })
             })
         })
 
@@ -179,7 +187,7 @@ class ScootMap extends Component {
             }
 
             this.addSpinToMap(myMap, lat, lng)
-            // this.addBirdToMap(myMap, lat, lng)
+            this.addBirdToMap(myMap, lat, lng)
             this.getUserAddress(myMap);
             // this.addScootsToMap(myMap, lat, lng)
             // this.addScootsWest(myMap, lat, lng)

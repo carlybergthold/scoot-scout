@@ -60,12 +60,12 @@ class ApplicationViews extends Component {
 
     render() {
       return(<>
-        <Route path="/home/" component={Homepage} />
-        <Route path="/map/" render={(props) => <ScootMap {...props} startingLat={this.state.startingLat} startingLng={this.state.startingLng} popup={this.state.popup} address={this.state.address} userId={this.state.userId} />}
+        <Route path="/home" component={Homepage} />
+        <Route path="/map" render={(props) => <ScootMap {...props} startingLat={this.state.startingLat} startingLng={this.state.startingLng} popup={this.state.popup} address={this.state.address} userId={this.state.userId} />}
         />
-        <Route path="/register/" render={(props) => <Registration {...props} userId={this.state.userId} />} />
-        <Route path="/login/" render={(props) => <Login {...props} userId={this.state.userId} login={this.login} />} />
-        <Route path="/locations/" render={(props) => <SavedLocations {...props} startingLat={this.state.startingLat} startingLng={this.state.startingLng} getAddress={this.getAddress} userId={this.state.userId} />}
+        <Route path="/register" render={(props) => <Registration {...props} userId={this.state.userId} />} />
+        <Route path="/login" render={(props) => <Login {...props} userId={this.state.userId} login={this.login} />} />
+        <Route path="/locations" render={(props) => <SavedLocations {...props} startingLat={this.state.startingLat} startingLng={this.state.startingLng} getAddress={this.getAddress} userId={this.state.userId} />}
         />
       </>
       )

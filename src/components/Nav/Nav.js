@@ -5,8 +5,20 @@ import "./Nav.css"
 
 class TopNav extends Component {
 
+    state = {
+        navLink: "log out"
+    }
+
     logout = () => {
         localStorage.removeItem('user');
+    }
+
+    componentDidMount() {
+        if (localStorage.getItem('user')) {
+            this.setState(state => ({ navLink: "log out" }))
+            } else {
+            this.setState(state => ({ navLink: "log in" }))
+        }
     }
 
     render() {
@@ -18,11 +30,11 @@ class TopNav extends Component {
                     <span></span>
                     <span></span>
                     <ul id="menu">
-                        <Link to="/home"><li>Home</li></Link>
-                        <Link to="/map"><li>Find A Scooter</li></Link>
-                        <Link to="/locations"><li>My Locations</li></Link>
-                        <Link to="/register"><li>Register</li></Link>
-                        <p id="logOut" onClick={this.logout}>Log Out</p>
+                        <Link to="/home"><li>home</li></Link>
+                        <Link to="/map"><li>scoot map</li></Link>
+                        <Link to="/locations"><li>my locations</li></Link>
+                        <Link to="/register"><li>register</li></Link>
+                        <p id="logOut" onClick={this.logout}>{this.state.navLink}</p>
                     </ul>
                 </div>
             </nav>
