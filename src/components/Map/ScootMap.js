@@ -63,22 +63,6 @@ class ScootMap extends Component {
         })
     }
 
-    addScootsWest = (map, lat, lng) => {
-        for (let index = 1; index < 5; index++) {
-            let newLat = lat - (0.0008 * index);
-            let newLng = lng - (0.008 * index);
-            API.multibike(newLat, newLng).then(r => {
-                console.log("west", r)
-                new L.marker([newLat, newLng], {icon: this.orangeIcon}).addTo(map).bindPopup('west')
-                r.data.vehicles.forEach(scooter => {
-                    let scootLat = scooter.lat;
-                    let scootLng = scooter.lng;
-                    new L.marker([scootLat, scootLng], {icon: this.orangeIcon}).addTo(map).bindPopup(`<h1>${scooter.provider.name}</h1> <h3>Battery Level: ${scooter.battery}</h3> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${scootLat},${scootLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
-                });
-            })
-        }
-    }
-
 
     getUserAddress = (map) => {
         const myProvider = new OpenStreetMapProvider();
@@ -145,8 +129,9 @@ class ScootMap extends Component {
     }
 
     componentDidMount() {
-            console.log("scootmap mounted")
 
+        //show the user location
+        if (this.props.popup) {
             let lat = this.props.startingLat;
             let lng = this.props.startingLng;
 
@@ -159,44 +144,64 @@ class ScootMap extends Component {
             }
             ).addTo(myMap);
 
-            //show the user location
-            if (this.props.popup) {
-                new L.marker([lat, lng]).addTo(myMap).bindPopup(`${this.props.address} </br>
-                <button class="currentLocationBtn">Back to Current Location</button>`).openPopup()
+            new L.marker([lat, lng]).addTo(myMap).bindPopup(`${this.props.address} </br>
+            <button class="currentLocationBtn">Back to Current Location</button>`).openPopup()
 
-                document.querySelector(".currentLocationBtn").addEventListener("click", function() {
-                    API.getUserLocation()
-                    .then(user => {
-                        L.circle([user.location.lat, user.location.lng], {
-                            color: 'red',
-                            fillColor: '#f03',
-                            fillOpacity: 0.5,
-                            radius: 100
-                        }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup();
-                        myMap.setView([user.location.lat, user.location.lng], 14);
-                    })
+            document.querySelector(".currentLocationBtn").addEventListener("click", function() {
+                API.getUserLocation()
+                .then(user => {
+                    myMap.setView([user.location.lat, user.location.lng], 14);
+                    L.circle([user.location.lat, user.location.lng], {
+                        color: 'red',
+                        fillColor: '#f03',
+                        fillOpacity: 0.5,
+                        radius: 100
+                    }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup();
                 })
+            })
+            this.addSpinToMap(myMap, lat, lng)
+            this.addBirdToMap(myMap, lat, lng)
+            this.getUserAddress(myMap);
+            this.addScootsToMap(myMap, lat, lng)
+        }
+        else {
+            API.getUserLocation()
+            .then(user => {
+                let lat = user.location.lat
+                let lng = user.location.lng
 
-            } else {
+                const myMap = L.map('map').setView([lat, lng], 14);
+
+                L.tileLayer("https://api.mapbox.com/styles/v1/carlymita/cjwwjwccr51kh1cpcw995d56n/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2FybHltaXRhIiwiYSI6ImNqd3FoeHZtYjE5cjA0N21nMGhheGk4NXgifQ.jf0Z7pkxDwB17dk-2xPtFw", {
+                    id: 'mapbox.streets',
+                    maxZoom: 17,
+                    accessToken: apiKeys.mapBoxToken
+                }
+                ).addTo(myMap);
+
                 L.circle([lat, lng], {
                     color: 'red',
                     fillColor: '#f03',
                     fillOpacity: 0.5,
                     radius: 100
                 }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup();
-            }
 
-            this.addSpinToMap(myMap, lat, lng)
-            // this.addBirdToMap(myMap, lat, lng)
-            this.getUserAddress(myMap);
-            // this.addScootsToMap(myMap, lat, lng)
-            // this.addScootsWest(myMap, lat, lng)
-        // })
+                this.addSpinToMap(myMap, lat, lng)
+                this.addBirdToMap(myMap, lat, lng)
+                this.getUserAddress(myMap);
+                this.addScootsToMap(myMap, lat, lng)
+            })
+
+        }
+    }
+
+    mapfunction = (map) => {
+        L.map.setView([this.state.startingLat, this.state.startingLng], 14);
+
     }
 
     render() {
         console.log(this.props, "scootmap rendered")
-
         return (
             <div>
                 <div id="map"></div>

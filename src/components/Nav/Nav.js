@@ -22,7 +22,7 @@ class TopNav extends Component {
         if (localStorage.getItem('user')) {
             localStorage.removeItem('user');
             this.props.history.push('/home')
-            console.log("remove localstorage and redirect to home")
+            this.setState(state => ({ navLink: "log in" , class: "registerlink"}))
         } else {
             this.props.history.push('/login')
             console.log("redirect to login")
