@@ -2,52 +2,47 @@ import React, { Component } from "react"
 import { withRouter } from 'react-router'
 import "./Registration.css"
 import scooter3 from "../Homepage/scooter3.png"
+import API from "../../API/apiCalls";
 
 
 class Registration extends Component {
 
     state = {
-        user: false,
-        text: "Register"
+        username: "",
+        email: "",
+        password: ""
     }
 
-    setStorage = () => {
-        window.sessionStorage.getItem("registerOrLogin");
+    handleChange = (e) =>{
+        this.setState({[e.target.id]: e.target.value})
     }
 
-    toggle = () => {
-        if (this.state.user) {
-          this.setState(state => ({ text: "Log In" }))
-          return <button id="loginBtn">Login</button>
-        } else {
-          this.setState(state => ({ text: "Register" }))
-          return <button id="registerBtn">Register new account</button>
+    addUser = () => {
+        let userObj = {
+            username: this.state.username,
+            email: this.state.email,
+            password: this.state.password
         }
+        API.post("users", userObj)
+        .then(newUser => {
+            localStorage.setItem('user', JSON.stringify(newUser));
+            return newUser;
+          });
     }
-
-    // toggleButton = () => {
-    //    if (registerButton.classList.contains("welcome-header-active")) {
-    //         window.sessionStorage.setItem("registerOrLogin", "login");
-
-    //     } else {
-    //         window.sessionStorage.setItem("registerOrLogin", "register");
-    //     }
-    // }
 
     render() {
         return (
             <div id="registerContainer">
-                <img src={scooter3} className="topLogo"></img>
+                <img src={scooter3} className="topLogo" alt="Scoot-Scout-logo"></img>
                 <h1>register</h1>
                 <form id="registerForm">
-                    {this.toggle}
-                    <label for="name">Username</label>
-                    <input type="text" placeholder="Username" id="inputUsername"></input>
-                    <label for="password">Password</label>
-                    <input type="password" placeholder="Password" id="inputPassword"></input>
-                    <label for="email">Email Address</label>
-                    <input type="email" placeholder="Email Address" id="inputEmail"></input>
-                    <button type="submit" id="submitBtn">Submit</button>
+                    <label>Username</label>
+                    <input type="text" placeholder="Username" id="username" onChange={this.handleChange.bind(this)}></input>
+                    <label>Email</label>
+                    <input type="email" placeholder="Email" id="email" onChange={this.handleChange.bind(this)}></input>
+                    <label>Password</label>
+                    <input type="password" placeholder="Password" id="password" onChange={this.handleChange.bind(this)}></input>
+                    <button type="submit" className="submitBtn" onClick={this.addUser}>Submit</button>
                 </form>
             </div>
         )

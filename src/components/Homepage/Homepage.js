@@ -10,9 +10,13 @@ class Homepage extends Component {
     render() {
         return (
             <div id="homeContainer">
-                <img src={scooter3} id="splashLogo"></img>
+                <img src={scooter3} id="splashLogo" alt="Scoot-Scout-logo"></img>
                 <h1>scoot scout</h1>
                 <button id="splashBtn"><Link to="/map/" className="btnLink">Find Scooters!</Link></button>
+                <div className="actionLinks">
+                    <Link to="/register/">register&nbsp;&nbsp;| </Link>
+                    <Link to="/login/">&nbsp;&nbsp;log in</Link>
+                </div>
             </div>
         )
     }

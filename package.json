@@ -4,10 +4,12 @@
   "private": true,
   "dependencies": {
     "apollo-boost": "^0.4.2",
+    "firebase": "^6.2.0",
     "graphql": "^14.3.1",
     "graphql-tag": "^2.10.1",
     "leaflet": "^1.5.1",
     "leaflet-geosearch": "^2.7.0",
+    "leaflet.markercluster": "^1.4.1",
     "mapbox-gl": "^1.0.0",
     "react": "^16.8.6",
     "react-apollo": "^2.5.6",
@@ -17,6 +19,7 @@
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
+    "react-with-firebase-auth": "^1.0.3",
     "reactstrap": "^8.0.0"
   },
   "scripts": {

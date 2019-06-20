@@ -1,4 +1,4 @@
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
  
   /* SIDE NAV */
 
@@ -174,12 +174,20 @@
     position: fixed;
     bottom: 15px;
     margin-left: 9.5rem;
-    background-color: #ffe100;
+    background-color: black;
+    color: white;
     border-radius: 25px;
-    font-size: 2rem;
+    font-size: 1.5rem;
     border: 1px solid black;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.363);
     line-height: 0;
+  }
+
+  #logOut {
+    position: fixed;
+    bottom: 10rem;
+    font-weight: 600;
+    font-size: 1.4rem;
   }
 
 }

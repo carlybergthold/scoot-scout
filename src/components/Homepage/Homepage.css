@@ -31,4 +31,11 @@
     h1 {
         font-family: 'Quicksand', sans-serif;
     }
+
+    .actionLinks {
+        display: flex;
+        justify-content: center;
+        position: fixed;
+        bottom: 3rem;
+    }
 }

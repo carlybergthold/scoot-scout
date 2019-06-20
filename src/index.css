@@ -1,10 +1,11 @@
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
 
   body {
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: 'Quicksand', sans-serif;
+    background-color: #ffe100;
   }
 
   a:hover {
