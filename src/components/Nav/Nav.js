@@ -25,7 +25,7 @@ class TopNav extends Component {
             this.setState(state => ({ navLink: "log in" , class: "registerlink"}))
         } else {
             this.props.history.push('/login')
-            console.log("redirect to login")
+            this.setState(state => ({ userId: "" }))
         }
     }
 
@@ -36,6 +36,10 @@ class TopNav extends Component {
             this.setState(state => ({ navLink: "log in" , class: "registerlink"}))
         }
     }
+
+    // function check() {
+    //     document.getElementById("myCheck").checked = true;
+    // }
 
     render() {
         return (

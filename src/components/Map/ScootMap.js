@@ -6,6 +6,8 @@ import apiKeys from "../../API/apiKeys";
 import API from "../../API/apiCalls"
 import Footer from "../Nav/Footer";
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
+import 'leaflet.markercluster'
+
 
 
 class ScootMap extends Component {
@@ -20,25 +22,27 @@ class ScootMap extends Component {
     });
 
     //function to call the Spin API and mark their scooters on the map
-    addSpinToMap = (map, lat, lng) => {
-        var greenIcon = new L.Icon({
-            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41]
-          });
+    // addSpinToMap = (map, lat, lng, markers) => {
+    //     var greenIcon = new L.Icon({
+    //         iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+    //         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    //         iconSize: [25, 41],
+    //         iconAnchor: [12, 41],
+    //         popupAnchor: [1, -34],
+    //         shadowSize: [41, 41]
+    //       });
 
-        API.getSpin().then(r => {
-            console.log("Spin", r)
-            r.data.bikes.forEach(scooter => {
-                let spinLat = scooter.lat;
-                let spinLng = scooter.lon;
-                new L.marker([spinLat, spinLng], {icon: greenIcon}).addTo(map).bindPopup(`<h1>Spin</h1> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${spinLat},${spinLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
-            });
-        })
-    }
+    //     API.getSpin().then(r => {
+    //         console.log("Spin", r)
+    //         r.data.bikes.forEach(scooter => {
+    //             let spinLat = scooter.lat;
+    //             let spinLng = scooter.lon;
+    //             let m = new L.marker([spinLat, spinLng], {icon: greenIcon}).addTo(map).bindPopup(`<h1>Spin</h1> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${spinLat},${spinLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
+
+    //             `${markers}`.addLayer(m);
+    //         });
+    //     })
+    // }
 
     //function to call the Bird API and mark their scooters on the map
     addBirdToMap = (map, lat, lng) => {
@@ -51,6 +55,25 @@ class ScootMap extends Component {
             });
         })
     }
+
+    addJumpToMap = (map, lat, lng) => {
+        var redIcon = new L.Icon({
+            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+        API.getJump().then(r => {
+            console.log("Jump", r)
+            r.forEach(scooter => {
+                let jumpLat = scooter.gps_latitude;
+                let jumpLng = scooter.gps_longitude;
+                new L.marker([jumpLat, jumpLng], {icon: redIcon}).addTo(map).bindPopup(`<h1>Jump Scooter</h1> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${jumpLat},${jumpLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
+            });
+        })
+    };
 
     addScootsToMap = (map, lat, lng) => {
         API.multibike(lat, lng).then(r => {
@@ -186,10 +209,14 @@ class ScootMap extends Component {
                     radius: 100
                 }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup();
 
-                this.addSpinToMap(myMap, lat, lng)
+                const markers = L.markerClusterGroup();
+                myMap.addLayer(markers);
+
+                // this.addSpinToMap(myMap, lat, lng, markers)
                 this.addBirdToMap(myMap, lat, lng)
                 this.getUserAddress(myMap);
                 this.addScootsToMap(myMap, lat, lng)
+                this.addJumpToMap(myMap, lat, lng)
             })
 
         }

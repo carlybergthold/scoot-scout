@@ -12,14 +12,9 @@ class Login extends Component {
         link: "/login"
     }
 
-    handleLink = () => {
-
-    }
-
     handleChange = (e) =>{
         this.setState({[e.target.id]: e.target.value})
     }
-
 
     render() {
         return (
@@ -32,7 +27,10 @@ class Login extends Component {
                     <label>Password</label>
                     <input type="password" placeholder="Password" id="password" onChange={this.handleChange.bind(this)}></input>
                     <button type="submit" className="submitBtn"
-                    onClick={() => this.props.login(this.state.email, this.state.password)}
+                    onClick={(e) => {
+                        e.preventDefault()
+                        this.props.verifyUser(this.state.email, this.state.password) }
+                    }
                     >Submit</button>
                 </form>
             </div>

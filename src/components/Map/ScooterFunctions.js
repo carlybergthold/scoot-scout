@@ -125,3 +125,5 @@ addLimeToMap: (map, lat, lng) => {
     }
 
 }
+
+export default scootFunctions

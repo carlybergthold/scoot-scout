@@ -9,6 +9,7 @@
     "graphql-tag": "^2.10.1",
     "leaflet": "^1.5.1",
     "leaflet-geosearch": "^2.7.0",
+    "leaflet.markercluster": "^1.4.1",
     "mapbox-gl": "^1.0.0",
     "react": "^16.8.6",
     "react-apollo": "^2.5.6",
