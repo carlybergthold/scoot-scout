@@ -12,13 +12,13 @@
     #splashBtn {
         margin-top: 2rem;
         background-color: black;
-        padding: 0.5rem;
+        padding: 0.6rem;
         border-radius: 7px;
     }
 
     .btnLink {
         text-decoration: none;
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         font-weight: 600;
         color: white;
         font-family: 'Quicksand', sans-serif;
@@ -37,5 +37,6 @@
         justify-content: center;
         position: fixed;
         bottom: 3rem;
+        font-size: 1.2rem;
     }
 }

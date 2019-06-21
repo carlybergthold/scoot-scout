@@ -6,55 +6,28 @@ import "./Nav.css"
 class TopNav extends Component {
 
     state = {
-        navLink: "log out",
-        class: "hidden"
+        idk: ""
     }
 
-    logout = () => {
-        localStorage.removeItem('user');
+    check = () => {
+        document.getElementById("checkbox").checked = false;
+        this.setState({idk: "ok"})
     }
-
-    login = () => {
-        this.props.history.push('/login')
-    }
-
-    logInOrOut = () => {
-        if (localStorage.getItem('user')) {
-            localStorage.removeItem('user');
-            this.props.history.push('/home')
-            this.setState(state => ({ navLink: "log in" , class: "registerlink"}))
-        } else {
-            this.props.history.push('/login')
-            this.setState(state => ({ userId: "" }))
-        }
-    }
-
-    componentDidMount() {
-        if (localStorage.getItem('user')) {
-            this.setState(state => ({ navLink: "log out", class: "hidden" }))
-            } else {
-            this.setState(state => ({ navLink: "log in" , class: "registerlink"}))
-        }
-    }
-
-    // function check() {
-    //     document.getElementById("myCheck").checked = true;
-    // }
 
     render() {
         return (
             <nav role='navigation'>
                 <div id="menuToggle">
-                    <input type="checkbox" />
+                    <input type="checkbox" id="checkbox" />
                     <span></span>
                     <span></span>
                     <span></span>
                     <ul id="menu">
-                        <Link to="/home"><li>home</li></Link>
-                        <Link to="/map"><li>scoot map</li></Link>
-                        <Link to="/locations"><li>my locations</li></Link>
-                        <Link to="/register" className={this.state.class}><li>register</li></Link>
-                        <p id="logOut" onClick={this.logInOrOut}>{this.state.navLink}</p>
+                        <Link to="/home"><li onClick={this.check}>home</li></Link>
+                        <Link to="/map"><li onClick={this.check}>scoot map</li></Link>
+                        <Link to="/locations"><li onClick={this.check}>my locations</li></Link>
+                        <Link to="/register" className={this.props.class}><li onClick={this.check}>register</li></Link>
+                        <p id="logOut" onClick={this.props.logInOrOut}><li onClick={this.check}>{this.props.navLink}</li></p>
                     </ul>
                 </div>
             </nav>

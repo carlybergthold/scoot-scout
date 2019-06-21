@@ -17,19 +17,6 @@ class Registration extends Component {
         this.setState({[e.target.id]: e.target.value})
     }
 
-    addUser = () => {
-        let userObj = {
-            username: this.state.username,
-            email: this.state.email,
-            password: this.state.password
-        }
-        API.post("users", userObj)
-        .then(newUser => {
-            localStorage.setItem('user', JSON.stringify(newUser));
-            return newUser;
-          });
-    }
-
     render() {
         return (
             <div id="registerContainer">
@@ -42,7 +29,12 @@ class Registration extends Component {
                     <input type="email" placeholder="Email" id="email" onChange={this.handleChange.bind(this)}></input>
                     <label>Password</label>
                     <input type="password" placeholder="Password" id="password" onChange={this.handleChange.bind(this)}></input>
-                    <button type="submit" className="submitBtn" onClick={this.addUser}>Submit</button>
+                    <button type="submit" className="submitBtn"
+                    onClick={(e) => {
+                        e.preventDefault()
+                        this.props.addUser(this.state.username, this.state.email, this.state.password) }
+                    }
+                    >Submit</button>
                 </form>
             </div>
         )

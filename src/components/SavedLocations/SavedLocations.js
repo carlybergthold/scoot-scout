@@ -8,13 +8,14 @@ import API from "../../API/apiCalls";
 class SavedLocations extends Component {
 
     state = {
-        savedLocations: []
+        savedLocations: [],
+        username: ""
     }
 
     componentDidMount() {
         const userId = this.props.userId;
-        console.log(userId)
         API.getLocations(userId).then(results => this.setState({savedLocations: results.savedLocations}))
+        // API.getUsername(userId).then(r => this.setState({username: r.username}))
     }
 
     render() {
