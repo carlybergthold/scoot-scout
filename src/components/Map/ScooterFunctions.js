@@ -1,6 +1,16 @@
 import API from "../../API/apiCalls"
 
 const scootFunctions = {
+    addScootsToMap: (map, lat, lng) => {
+        API.multibike(lat, lng).then(r => {
+            console.log("multi", r)
+            r.data.vehicles.forEach(scooter => {
+                let scootLat = scooter.lat;
+                let scootLng = scooter.lng;
+                new L.marker([scootLat, scootLng]).addTo(map).bindPopup(`<h1>${scooter.provider.name}</h1> <h3>Battery Level: ${scooter.battery}</h3> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${scootLat},${scootLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
+            });
+        })
+    },
     //function to call the Lyft API and mark their scooters on the map
     addLyftToMap: (map, lat, lng) => {
     var orangeIcon = new L.Icon({

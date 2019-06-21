@@ -6,7 +6,6 @@ import apiKeys from "../../API/apiKeys";
 import API from "../../API/apiCalls"
 import Footer from "../Nav/Footer";
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
-import 'leaflet.markercluster'
 
 
 
@@ -22,27 +21,25 @@ class ScootMap extends Component {
     });
 
     //function to call the Spin API and mark their scooters on the map
-    // addSpinToMap = (map, lat, lng, markers) => {
-    //     var greenIcon = new L.Icon({
-    //         iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-    //         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    //         iconSize: [25, 41],
-    //         iconAnchor: [12, 41],
-    //         popupAnchor: [1, -34],
-    //         shadowSize: [41, 41]
-    //       });
+    addSpinToMap = (map, lat, lng) => {
+        var greenIcon = new L.Icon({
+            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+          });
 
-    //     API.getSpin().then(r => {
-    //         console.log("Spin", r)
-    //         r.data.bikes.forEach(scooter => {
-    //             let spinLat = scooter.lat;
-    //             let spinLng = scooter.lon;
-    //             let m = new L.marker([spinLat, spinLng], {icon: greenIcon}).addTo(map).bindPopup(`<h1>Spin</h1> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${spinLat},${spinLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
-
-    //             `${markers}`.addLayer(m);
-    //         });
-    //     })
-    // }
+        API.getSpin().then(r => {
+            console.log("Spin", r)
+            r.data.bikes.forEach(scooter => {
+                let spinLat = scooter.lat;
+                let spinLng = scooter.lon;
+                L.marker([spinLat, spinLng], {icon: greenIcon}).addTo(map).bindPopup(`<h1>Spin</h1> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${spinLat},${spinLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
+            })
+        })
+    }
 
     //function to call the Bird API and mark their scooters on the map
     addBirdToMap = (map, lat, lng) => {
@@ -70,27 +67,79 @@ class ScootMap extends Component {
             r.forEach(scooter => {
                 let jumpLat = scooter.gps_latitude;
                 let jumpLng = scooter.gps_longitude;
-                new L.marker([jumpLat, jumpLng], {icon: redIcon}).addTo(map).bindPopup(`<h1>Jump Scooter</h1> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${jumpLat},${jumpLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
+                new L.marker([jumpLat, jumpLng], {icon: redIcon}).addTo(map).bindPopup(`<h1>Jump</h1> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${jumpLat},${jumpLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
             });
         })
     };
 
-    addScootsToMap = (map, lat, lng) => {
-        API.multibike(lat, lng).then(r => {
-            console.log("multi", r)
-            r.data.vehicles.forEach(scooter => {
-                let scootLat = scooter.lat;
-                let scootLng = scooter.lng;
-                new L.marker([scootLat, scootLng]).addTo(map).bindPopup(`<h1>${scooter.provider.name}</h1> <h3>Battery Level: ${scooter.battery}</h3> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${scootLat},${scootLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
+    addLyftToMap = (map, lat, lng) => {
+        var greyIcon = new L.Icon({
+            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+        API.getLyft().then(r => {
+            console.log("Lyft", r)
+            r.forEach(scooter => {
+                let lyftLat = scooter.gps_latitude;
+                let lyftLng = scooter.gps_longitude;
+                new L.marker([lyftLat, lyftLng], {icon: greyIcon}).addTo(map).bindPopup(`<h1>Lyft</h1> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${lyftLat},${lyftLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
             });
         })
-    }
+    };
+
+    addGotchaToMap = (map, lat, lng) => {
+        var blackIcon = new L.Icon({
+            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+        API.getGotcha().then(r => {
+            console.log("Gotcha", r)
+            r.forEach(scooter => {
+                let boltLat = scooter.gps_latitude;
+                let boltLng = scooter.gps_longitude;
+                new L.marker([boltLat, boltLng], {icon: blackIcon}).addTo(map).bindPopup(`<h1>Gotcha</h1> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${boltLat},${boltLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
+            });
+        })
+    };
+
+    addLimeToMap = (map, lat, lng) => {
+        // var bkIcon = new L.Icon({
+        //     iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png',
+        //     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        //     iconSize: [25, 41],
+        //     iconAnchor: [12, 41],
+        //     popupAnchor: [1, -34],
+        //     shadowSize: [41, 41]
+        // });
+        API.getLime().then(r => {
+            console.log("Lime", r)
+            r.forEach(scooter => {
+                let limeLat = scooter.gps_latitude;
+                let limeLng = scooter.gps_longitude;
+                new L.marker([limeLat, limeLng]).addTo(map).bindPopup(`<h1>Lime</h1> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${limeLat},${limeLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
+            });
+        })
+    };
 
 
     getUserAddress = (map) => {
+
+        let popupText;
+        if (this.props.userId !== "") {
+            popupText = "</br><button class='saveAddBtn'>Save to My Locations</button></br><p class='hide hidden'>Saved!</p></br><button class='currentLocationBtn hidden'>Back to Current Location</button>"
+        } else popupText = "</br><a href='/register'>Register to Save Location</a></br><button class='currentLocationBtn'>Back to Current Location</button><button class='saveAddBtn hidden'>Save to My Locations</button>"
+
         const myProvider = new OpenStreetMapProvider();
 
-        var violetIcon = new L.Icon({
+        const violetIcon = new L.Icon({
             iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png',
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
             iconSize: [25, 41],
@@ -108,7 +157,7 @@ class ScootMap extends Component {
             marker: {
                 icon: violetIcon
             },
-            popupFormat: ({ result }) => result.label + "</br><button class='saveAddBtn'>Save to My Locations</button></br><p class='hide hidden'>Saved!</p></br><button class='currentLocationBtn hidden'>Back to Current Location</button>",
+            popupFormat: ({ result }) => result.label + popupText,
             maxMarkers: 1,
             retainZoomLevel: false,
             animateZoom: true,
@@ -120,9 +169,9 @@ class ScootMap extends Component {
         map.on('geosearch/showlocation', result => {
             let addressObj = {
                 address: result.location.label,
-                location: result.location.y,
+                lat: result.location.y,
                 lng: result.location.x,
-                userId: 1
+                userId: this.props.userId
             }
             document.querySelector(".saveAddBtn").addEventListener("click", function() {
                 API.post("savedLocations", addressObj)
@@ -152,7 +201,6 @@ class ScootMap extends Component {
     }
 
     componentDidMount() {
-
         //show the user location
         if (this.props.popup) {
             let lat = this.props.startingLat;
@@ -169,6 +217,7 @@ class ScootMap extends Component {
 
             new L.marker([lat, lng]).addTo(myMap).bindPopup(`${this.props.address} </br>
             <button class="currentLocationBtn">Back to Current Location</button>`).openPopup()
+            
 
             document.querySelector(".currentLocationBtn").addEventListener("click", function() {
                 API.getUserLocation()
@@ -182,10 +231,13 @@ class ScootMap extends Component {
                     }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup();
                 })
             })
-            this.addSpinToMap(myMap, lat, lng)
-            this.addBirdToMap(myMap, lat, lng)
             this.getUserAddress(myMap);
-            this.addScootsToMap(myMap, lat, lng)
+            this.addSpinToMap(myMap, lat, lng)
+            // this.addBirdToMap(myMap, lat, lng)
+            // this.addJumpToMap(myMap, lat, lng)
+            // this.addLyftToMap(myMap, lat, lng)
+            // this.addGotchaToMap(myMap, lat, lng)
+            this.addLimeToMap(myMap, lat, lng)
         }
         else {
             API.getUserLocation()
@@ -209,26 +261,18 @@ class ScootMap extends Component {
                     radius: 100
                 }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup();
 
-                const markers = L.markerClusterGroup();
-                myMap.addLayer(markers);
-
-                // this.addSpinToMap(myMap, lat, lng, markers)
-                this.addBirdToMap(myMap, lat, lng)
                 this.getUserAddress(myMap);
-                this.addScootsToMap(myMap, lat, lng)
-                this.addJumpToMap(myMap, lat, lng)
+                this.addSpinToMap(myMap, lat, lng)
+                // this.addBirdToMap(myMap, lat, lng)
+                // this.addJumpToMap(myMap, lat, lng)
+                // this.addLyftToMap(myMap, lat, lng)
+                // this.addGotchaToMap(myMap, lat, lng)
+                this.addLimeToMap(myMap, lat, lng)
             })
-
-        }
     }
-
-    mapfunction = (map) => {
-        L.map.setView([this.state.startingLat, this.state.startingLng], 14);
-
-    }
+}
 
     render() {
-        console.log(this.props, "scootmap rendered")
         return (
             <div>
                 <div id="map"></div>

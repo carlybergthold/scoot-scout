@@ -13,21 +13,28 @@ class ScootApp extends Component {
         startingLng: "",
         popup: false,
         address: "",
-        userId: ""
+        userId: "",
+        navLink: "log out",
+        class: "hidden"
     }
 
     getAddress = (lat, lng, address) => {
         this.setState({startingLat: lat, startingLng: lng, popup: true, address: address})
     }
 
-    // login = (email, password) => {
-    //   this.props.verifyUser(email, password)
-    //   .then(() => {
-    //   if (this.props.userId !== "") {
-    //      this.props.history.push("/map")
-    //   }
-    //   })
-    //   }
+    addUser = (username, email, password) => {
+      let userObj = {
+          username: username,
+          email: email,
+          password: password
+      }
+      API.post("users", userObj)
+      .then(newUser => {
+          localStorage.setItem('user', JSON.stringify(newUser));
+          this.setState({userId: newUser.id}, () =>
+          this.props.history.push('/map'));
+        })
+  }
 
     verifyUser = (email, password) => {
          return fetch(`http://localhost:8088/users?email=${email}`)
@@ -47,14 +54,27 @@ class ScootApp extends Component {
           })
     }
 
+    logInOrOut = () => {
+      if (localStorage.getItem('user')) {
+          localStorage.removeItem('user');
+          this.setState(state => ({ navLink: "log in" , class: "registerlink"}))
+          this.props.history.push('/home')
+
+      } else {
+          this.props.history.push('/login')
+          this.setState(state => ({ userId: "", navLink: "log out" , class: "hidden" }))
+      }
+    }
+
       componentDidMount() {
         const sessionUser = localStorage.getItem('user')
         const user = JSON.parse(sessionUser);
 
         if (user) {
-          this.setState({userId: user.id})
+          this.setState({ userId: user.id, navLink: "log out", class: "hidden" })
         } else {
           console.log("no user in session storage (from appviews)")
+          this.setState(state => ({ navLink: "log in" , class: "registerlink"}))
         }
         API.getUserLocation()
         .then(user => {
@@ -65,8 +85,8 @@ class ScootApp extends Component {
     render() {
         return (
             <>
-                <TopNav userId={this.state.userId} startingLat={this.state.startingLat} startingLng={this.state.startingLng} popup={this.state.popup} address={this.state.address} />
-                <ApplicationViews userId={this.state.userId} startingLat={this.state.startingLat} startingLng={this.state.startingLng} popup={this.state.popup} address={this.state.address} verifyUser={this.verifyUser} getAddress={this.getAddress} />
+                <TopNav userId={this.state.userId} startingLat={this.state.startingLat} startingLng={this.state.startingLng} popup={this.state.popup} address={this.state.address} navLink={this.state.navLink} class={this.state.class} logInOrOut={this.logInOrOut} />
+                <ApplicationViews userId={this.state.userId} startingLat={this.state.startingLat} startingLng={this.state.startingLng} popup={this.state.popup} address={this.state.address} verifyUser={this.verifyUser} getAddress={this.getAddress} addUser={this.addUser} />
             </>
         )
     }
