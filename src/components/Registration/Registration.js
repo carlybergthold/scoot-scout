@@ -34,7 +34,7 @@ class Registration extends Component {
                         e.preventDefault()
                         this.props.addUser(this.state.username, this.state.email, this.state.password) }
                     }
-                    >Submit</button>
+                    >submit</button>
                 </form>
             </div>
         )

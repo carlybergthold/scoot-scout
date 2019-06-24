@@ -7,10 +7,29 @@ import API from "../../API/apiCalls"
 import Footer from "../Nav/Footer";
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 import markercluster from "leaflet.markercluster"
+import spin from "./images/spin.jpg"
+import jump from "./images/jump.png"
+import bird from "./images/bird.png"
+import lime from "./images/lime.jpeg"
+import lyft from "./images/lyft.png"
+import gotcha from "./images/gotcha.jpeg"
 
 
 
 class ScootMap extends Component {
+
+    state = {
+        spin: true,
+        lyft: false,
+        jump: false,
+        lime: false,
+        gotcha: false,
+        bird: false
+    }
+
+    filterScooters = () => {
+        this.setState(state => ({ spin: !state.spin }));
+    }
 
     addSpinToMap(map, lat, lng) {
         API.getSpin().then(r => {
@@ -157,7 +176,7 @@ class ScootMap extends Component {
 
             L.tileLayer("https://api.mapbox.com/styles/v1/carlymita/cjwwjwccr51kh1cpcw995d56n/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2FybHltaXRhIiwiYSI6ImNqd3FoeHZtYjE5cjA0N21nMGhheGk4NXgifQ.jf0Z7pkxDwB17dk-2xPtFw", {
                 id: 'mapbox.streets',
-                maxZoom: 17,
+                maxZoom: 18,
                 accessToken: apiKeys.mapBoxToken
             }
             ).addTo(myMap);
@@ -169,21 +188,21 @@ class ScootMap extends Component {
                 API.getUserLocation()
                 .then(user => {
                     myMap.setView([user.location.lat, user.location.lng], 14);
-                    L.circle([user.location.lat, user.location.lng], {
+                    L.circleMarker([user.location.lat, user.location.lng], {
                         color: 'red',
                         fillColor: '#f03',
                         fillOpacity: 0.5,
-                        radius: 100
+                        radius: 12
                     }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup();
                 })
             })
             this.getUserAddress(myMap);
             this.addSpinToMap(myMap, lat, lng)
-            this.addMoreScoots(API.getLyft, "Lyft", myMap, lat, lng)
-            this.addMoreScoots(API.getJump, "Jump", myMap, lat, lng)
-            this.addMoreScoots(API.getLime, "Lime", myMap, lat, lng)
-            this.addMoreScoots(API.getGotcha, "Gotcha", myMap, lat, lng)
-            // this.addBirdToMap(myMap, lat, lng)
+            this.addMoreScoots(API.getLyft, "Lyft", "red", myMap, lat, lng)
+            this.addMoreScoots(API.getJump, "Jump", "yellow", myMap, lat, lng)
+            this.addMoreScoots(API.getLime, "Lime", "green", myMap, lat, lng)
+            this.addMoreScoots(API.getGotcha, "Gotcha", "grey", myMap, lat, lng)
+            this.addMoreScoots(API.getBird, "Bird", "black", myMap, lat, lng)
         }
         else {
             API.getUserLocation()
@@ -195,25 +214,42 @@ class ScootMap extends Component {
 
                 L.tileLayer("https://api.mapbox.com/styles/v1/carlymita/cjwwjwccr51kh1cpcw995d56n/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2FybHltaXRhIiwiYSI6ImNqd3FoeHZtYjE5cjA0N21nMGhheGk4NXgifQ.jf0Z7pkxDwB17dk-2xPtFw", {
                     id: 'mapbox.streets',
-                    maxZoom: 17,
+                    maxZoom: 18,
                     accessToken: apiKeys.mapBoxToken
                 }
                 ).addTo(myMap);
 
-                L.circle([lat, lng], {
+                L.circleMarker([lat, lng], {
                     color: 'red',
                     fillColor: '#f03',
                     fillOpacity: 0.5,
-                    radius: 100
+                    radius: 12
                 }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup();
 
                 this.getUserAddress(myMap);
-                this.addSpinToMap(myMap, lat, lng)
-                this.addMoreScoots(API.getLyft, "Lyft", "red", myMap, lat, lng)
-                this.addMoreScoots(API.getJump, "Jump", "yellow", myMap, lat, lng)
-                this.addMoreScoots(API.getLime, "Lime", "green", myMap, lat, lng)
-                this.addMoreScoots(API.getGotcha, "Gotcha", "grey", myMap, lat, lng)
-                // this.addBirdToMap(myMap, lat, lng)
+                if (this.state.spin) {
+                    this.addSpinToMap(myMap, lat, lng)
+                }
+
+                if (this.state.lyft) {
+                    this.addMoreScoots(API.getLyft, "Lyft", "red", myMap, lat, lng)
+                }
+
+                if (this.state.jump) {
+                    this.addMoreScoots(API.getJump, "Jump", "yellow", myMap, lat, lng)
+                }
+
+                if (this.state.lime) {
+                    this.addMoreScoots(API.getLime, "Lime", "green", myMap, lat, lng)
+                }
+
+                if (this.state.gotcha) {
+                    this.addMoreScoots(API.getGotcha, "Gotcha", "grey", myMap, lat, lng)
+                }
+
+                if (this.state.bird) {
+                    this.addMoreScoots(API.getBird, "Bird", "black", myMap, lat, lng)
+                }
             })
     }
 }
@@ -222,6 +258,14 @@ class ScootMap extends Component {
         return (
             <div>
                 <div id="map"></div>
+                <div id="sidebar">
+                    <img src={spin} className="brandLogo" onClick={this.filterScooters}></img>
+                    <img src={jump} className="brandLogo"></img>
+                    <img src={lime} className="brandLogo"></img>
+                    <img src={lyft} className="brandLogo"></img>
+                    <img src={bird} className="brandLogo"></img>
+                    <img src={gotcha} className="brandLogo"></img>
+                </div>
                 <Footer />
             </div>
         )

@@ -51,6 +51,7 @@
         height: 28px;
         margin-right: 10px;
         border: 1px solid gray;
+        font-size: 1rem;
     }
 
     .reset {
@@ -97,7 +98,8 @@
 
     .leaflet-popup-content a {
         font-size: 1rem;
-        color: rgb(38, 89, 148);
+        color: black;
+        text-decoration: underline;
     }
 
     .saveAddBtn {
@@ -125,7 +127,21 @@
         color: white;
         border-radius: 6px;
         margin-top: 0.4rem;
-        font-weight: 600;
+        font-weight: 500;
+        font-size: 1rem;
         font-family: 'Quicksand', sans-serif;
+    }
+
+    #sidebar {
+        position: fixed;
+        width: 4rem;
+        left: 1rem;
+        top: 12rem;
+        bottom: 0;
+        z-index: 9;
+    }
+
+    .brandLogo {
+        width: 3rem;
     }
 }

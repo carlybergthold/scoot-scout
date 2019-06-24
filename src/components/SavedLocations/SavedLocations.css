@@ -11,22 +11,26 @@
 
     #locations section {
         border: 2px solid black;
-        margin: 1rem;
+        margin: 0.5rem;
         padding: 1rem;
         background-color: white;
     }
 
     .locationOpenBtn {
         background-color: black;
-        padding: 0.3rem;
+        padding: 0.6rem;
         border-radius: 7px;
-        font-size: 0.9rem;
-        font-weight: 500;
+        font-size: 1.2rem;
+        font-weight: 600;
         font-family: Quicksand;
     }
 
     #locations a {
         color: white;
+    }
+
+    #locations p {
+        font-size: 1.2rem;
     }
 
     .btnContainer {
