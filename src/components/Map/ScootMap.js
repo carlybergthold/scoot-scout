@@ -6,129 +6,246 @@ import apiKeys from "../../API/apiKeys";
 import API from "../../API/apiCalls"
 import Footer from "../Nav/Footer";
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
+import markercluster from "leaflet.markercluster"
+import spin from "./images/spin.jpg"
+import jump from "./images/jump.png"
+import bird from "./images/bird.png"
+import lime from "./images/lime.jpeg"
+import lyft from "./images/lyft.png"
+import gotcha from "./images/gotcha.jpeg"
 
 
 
 class ScootMap extends Component {
 
-    orangeIcon = new L.Icon({
-        iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
-    });
+    filterSpin = () => {
 
-    //function to call the Spin API and mark their scooters on the map
-    addSpinToMap = (map, lat, lng) => {
-        var greenIcon = new L.Icon({
-            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41]
-          });
+        const spinLogo = document.querySelector("#spinLogo")
 
+        const clusters = document.querySelectorAll(".spinCluster")
+        for (let i = 0; i < clusters.length; i++) {
+            if (clusters[i].style.display === "none") {
+                clusters[i].style.display = "flex";
+                spinLogo.style.opacity = 1;
+            } else {
+                clusters[i].style.display = "none";
+                spinLogo.style.opacity = 0.5;
+            }
+        }
+
+        const icons = document.querySelectorAll(".spinIcon")
+        for (let i = 0; i < icons.length; i++) {
+            if (icons[i].style.display === "none") {
+                icons[i].style.display = "flex";
+            } else {
+                icons[i].style.display = "none";
+            }
+        }
+    }
+
+    filterJump = () => {
+
+        const jumpLogo = document.querySelector("#jumpLogo")
+
+        const clusters = document.querySelectorAll(".JumpCluster")
+        for (let i = 0; i < clusters.length; i++) {
+            if (clusters[i].style.display === "none") {
+                clusters[i].style.display = "flex";
+                jumpLogo.style.opacity = 1;
+            } else {
+                clusters[i].style.display = "none";
+                jumpLogo.style.opacity = 0.5;
+            }
+        }
+
+        const icons = document.querySelectorAll(".JumpIcon")
+        for (let i = 0; i < icons.length; i++) {
+            if (icons[i].style.display === "none") {
+                icons[i].style.display = "flex";
+            } else {
+                icons[i].style.display = "none";
+            }
+        }
+    }
+
+    filterLime = () => {
+
+        const limeLogo = document.querySelector("#limeLogo")
+
+        const clusters = document.querySelectorAll(".LimeCluster")
+        for (let i = 0; i < clusters.length; i++) {
+            if (clusters[i].style.display === "none") {
+                clusters[i].style.display = "flex";
+                limeLogo.style.opacity = 1;
+            } else {
+                clusters[i].style.display = "none";
+                limeLogo.style.opacity = 0.5;
+            }
+        }
+
+        const icons = document.querySelectorAll(".LimeIcon")
+        for (let i = 0; i < icons.length; i++) {
+            if (icons[i].style.display === "none") {
+                icons[i].style.display = "flex";
+            } else {
+                icons[i].style.display = "none";
+            }
+        }
+    }
+
+    filterLyft = () => {
+
+        const lyftLogo = document.querySelector("#lyftLogo")
+
+        const clusters = document.querySelectorAll(".LyftCluster")
+        for (let i = 0; i < clusters.length; i++) {
+            if (clusters[i].style.display === "none") {
+                clusters[i].style.display = "flex";
+                lyftLogo.style.opacity = 1;
+            } else {
+                clusters[i].style.display = "none";
+                lyftLogo.style.opacity = 0.5;
+            }
+        }
+
+        const icons = document.querySelectorAll(".LyftIcon")
+        for (let i = 0; i < icons.length; i++) {
+            if (icons[i].style.display === "none") {
+                icons[i].style.display = "flex";
+            } else {
+                icons[i].style.display = "none";
+            }
+        }
+    }
+
+    filterBird = () => {
+
+        const birdLogo = document.querySelector("#birdLogo")
+
+        const clusters = document.querySelectorAll(".BirdCluster")
+        for (let i = 0; i < clusters.length; i++) {
+            if (clusters[i].style.display === "none") {
+                clusters[i].style.display = "flex";
+                birdLogo.style.opacity = 1;
+            } else {
+                clusters[i].style.display = "none";
+                birdLogo.style.opacity = 0.5;
+            }
+        }
+
+        const icons = document.querySelectorAll(".BirdIcon")
+        for (let i = 0; i < icons.length; i++) {
+            if (icons[i].style.display === "none") {
+                icons[i].style.display = "flex";
+            } else {
+                icons[i].style.display = "none";
+            }
+        }
+    }
+
+    filterGotcha = () => {
+
+        const gotchaLogo = document.querySelector("#gotchaLogo")
+
+        const clusters = document.querySelectorAll(".GotchaCluster")
+        for (let i = 0; i < clusters.length; i++) {
+            if (clusters[i].style.display === "none") {
+                clusters[i].style.display = "flex";
+                gotchaLogo.style.opacity = 1;
+            } else {
+                clusters[i].style.display = "none";
+                gotchaLogo.style.opacity = 0.5;
+            }
+        }
+
+        const icons = document.querySelectorAll(".GotchaIcon")
+        for (let i = 0; i < icons.length; i++) {
+            if (icons[i].style.display === "none") {
+                icons[i].style.display = "flex";
+            } else {
+                icons[i].style.display = "none";
+            }
+        }
+    }
+
+    addSpinToMap(map, lat, lng) {
         API.getSpin().then(r => {
-            console.log("Spin", r)
-            r.data.bikes.forEach(scooter => {
-                let spinLat = scooter.lat;
-                let spinLng = scooter.lon;
-                L.marker([spinLat, spinLng], {icon: greenIcon}).addTo(map).bindPopup(`<h1>Spin</h1> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${spinLat},${spinLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
+
+            const orangeIcon = new L.Icon({
+                iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41],
+                className: 'spinIcon',
+            });
+
+            const scooters = r.data.bikes;
+
+            const markerClusters = L.markerClusterGroup({
+                iconCreateFunction: function(cluster) {
+                  return L.divIcon({
+                    html: cluster.getChildCount(),
+                    className: 'spinCluster',
+                    iconSize: L.point(50, 50)
+                });
+                }
             })
+
+            for ( var i = 0; i < scooters.length; i++ )
+            {
+                let spinLat = scooters[i].lat;
+                let spinLng = scooters[i].lon;
+
+                let popup =
+                `<h1>Spin</h1> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${spinLat},${spinLng}&travelmode=walking' target='_blank'>Get Directions</a>`
+
+                let m = L.marker([spinLat, spinLng], {icon: orangeIcon}).bindPopup( popup );
+                markerClusters.addLayer( m );
+            }
+            map.addLayer( markerClusters );
         })
     }
 
-    //function to call the Bird API and mark their scooters on the map
-    addBirdToMap = (map, lat, lng) => {
-        API.getBird(lat, lng).then(r => {
-            console.log("Bird", r)
-            r.birds.forEach(scooter => {
-                let birdLat = scooter.location.latitude;
-                let birdLng = scooter.location.longitude;
-                new L.marker([birdLat, birdLng]).addTo(map).bindPopup(`<h1>Bird</h1> <h3>Battery Level: ${scooter.battery_level}</h3> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${birdLat},${birdLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
-            });
+    addMoreScoots = (func, brand, color, map, lat, lng) => {
+        var icon = new L.Icon({
+            iconUrl: `https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${color}.png`,
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41],
+            className: `${brand}Icon`,
+        });
+
+        func().then(r => {
+            const scooters = r;
+            const markerClusters = L.markerClusterGroup({
+                iconCreateFunction: function(cluster) {
+                  return L.divIcon({
+                    html: cluster.getChildCount(),
+                    className: `${brand}Cluster`,
+                    iconSize: L.point(50, 50)
+                });
+                }
+            })
+
+            for ( var i = 0; i < scooters.length; i++ )
+            {
+                let scootLat = scooters[i].gps_latitude;
+                let scootLng = scooters[i].gps_longitude;
+                let scootBrand = brand;
+
+                let popup =
+                `<h1>${scootBrand}</h1> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${scootLat},${scootLng}&travelmode=walking' target='_blank'>Get Directions</a>`
+
+                let m = L.marker([scootLat, scootLng], {icon: icon}).bindPopup( popup );
+                markerClusters.addLayer( m );
+            }
+            map.addLayer( markerClusters );
         })
     }
-
-    addJumpToMap = (map, lat, lng) => {
-        var redIcon = new L.Icon({
-            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41]
-        });
-        API.getJump().then(r => {
-            console.log("Jump", r)
-            r.forEach(scooter => {
-                let jumpLat = scooter.gps_latitude;
-                let jumpLng = scooter.gps_longitude;
-                new L.marker([jumpLat, jumpLng], {icon: redIcon}).addTo(map).bindPopup(`<h1>Jump</h1> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${jumpLat},${jumpLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
-            });
-        })
-    };
-
-    addLyftToMap = (map, lat, lng) => {
-        var greyIcon = new L.Icon({
-            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41]
-        });
-        API.getLyft().then(r => {
-            console.log("Lyft", r)
-            r.forEach(scooter => {
-                let lyftLat = scooter.gps_latitude;
-                let lyftLng = scooter.gps_longitude;
-                new L.marker([lyftLat, lyftLng], {icon: greyIcon}).addTo(map).bindPopup(`<h1>Lyft</h1> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${lyftLat},${lyftLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
-            });
-        })
-    };
-
-    addGotchaToMap = (map, lat, lng) => {
-        var blackIcon = new L.Icon({
-            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41]
-        });
-        API.getGotcha().then(r => {
-            console.log("Gotcha", r)
-            r.forEach(scooter => {
-                let boltLat = scooter.gps_latitude;
-                let boltLng = scooter.gps_longitude;
-                new L.marker([boltLat, boltLng], {icon: blackIcon}).addTo(map).bindPopup(`<h1>Gotcha</h1> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${boltLat},${boltLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
-            });
-        })
-    };
-
-    addLimeToMap = (map, lat, lng) => {
-        // var bkIcon = new L.Icon({
-        //     iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png',
-        //     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        //     iconSize: [25, 41],
-        //     iconAnchor: [12, 41],
-        //     popupAnchor: [1, -34],
-        //     shadowSize: [41, 41]
-        // });
-        API.getLime().then(r => {
-            console.log("Lime", r)
-            r.forEach(scooter => {
-                let limeLat = scooter.gps_latitude;
-                let limeLng = scooter.gps_longitude;
-                new L.marker([limeLat, limeLng]).addTo(map).bindPopup(`<h1>Lime</h1> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${limeLat},${limeLng}&travelmode=walking' target='_blank'>Get Directions</a>`)
-            });
-        })
-    };
-
 
     getUserAddress = (map) => {
 
@@ -210,34 +327,33 @@ class ScootMap extends Component {
 
             L.tileLayer("https://api.mapbox.com/styles/v1/carlymita/cjwwjwccr51kh1cpcw995d56n/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2FybHltaXRhIiwiYSI6ImNqd3FoeHZtYjE5cjA0N21nMGhheGk4NXgifQ.jf0Z7pkxDwB17dk-2xPtFw", {
                 id: 'mapbox.streets',
-                maxZoom: 17,
+                maxZoom: 18,
                 accessToken: apiKeys.mapBoxToken
             }
             ).addTo(myMap);
 
             new L.marker([lat, lng]).addTo(myMap).bindPopup(`${this.props.address} </br>
             <button class="currentLocationBtn">Back to Current Location</button>`).openPopup()
-            
 
             document.querySelector(".currentLocationBtn").addEventListener("click", function() {
                 API.getUserLocation()
                 .then(user => {
                     myMap.setView([user.location.lat, user.location.lng], 14);
-                    L.circle([user.location.lat, user.location.lng], {
+                    L.circleMarker([user.location.lat, user.location.lng], {
                         color: 'red',
                         fillColor: '#f03',
                         fillOpacity: 0.5,
-                        radius: 100
+                        radius: 12
                     }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup();
                 })
             })
             this.getUserAddress(myMap);
             this.addSpinToMap(myMap, lat, lng)
-            // this.addBirdToMap(myMap, lat, lng)
-            // this.addJumpToMap(myMap, lat, lng)
-            // this.addLyftToMap(myMap, lat, lng)
-            // this.addGotchaToMap(myMap, lat, lng)
-            this.addLimeToMap(myMap, lat, lng)
+            this.addMoreScoots(API.getLyft, "Lyft", "red", myMap, lat, lng)
+            this.addMoreScoots(API.getJump, "Jump", "yellow", myMap, lat, lng)
+            this.addMoreScoots(API.getLime, "Lime", "green", myMap, lat, lng)
+            this.addMoreScoots(API.getGotcha, "Gotcha", "grey", myMap, lat, lng)
+            this.addMoreScoots(API.getBird, "Bird", "black", myMap, lat, lng)
         }
         else {
             API.getUserLocation()
@@ -249,25 +365,25 @@ class ScootMap extends Component {
 
                 L.tileLayer("https://api.mapbox.com/styles/v1/carlymita/cjwwjwccr51kh1cpcw995d56n/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2FybHltaXRhIiwiYSI6ImNqd3FoeHZtYjE5cjA0N21nMGhheGk4NXgifQ.jf0Z7pkxDwB17dk-2xPtFw", {
                     id: 'mapbox.streets',
-                    maxZoom: 17,
+                    maxZoom: 18,
                     accessToken: apiKeys.mapBoxToken
                 }
                 ).addTo(myMap);
 
-                L.circle([lat, lng], {
+                L.circleMarker([lat, lng], {
                     color: 'red',
                     fillColor: '#f03',
                     fillOpacity: 0.5,
-                    radius: 100
+                    radius: 12
                 }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup();
 
                 this.getUserAddress(myMap);
                 this.addSpinToMap(myMap, lat, lng)
-                // this.addBirdToMap(myMap, lat, lng)
-                // this.addJumpToMap(myMap, lat, lng)
-                // this.addLyftToMap(myMap, lat, lng)
-                // this.addGotchaToMap(myMap, lat, lng)
-                this.addLimeToMap(myMap, lat, lng)
+                this.addMoreScoots(API.getLyft, "Lyft", "red", myMap, lat, lng)
+                this.addMoreScoots(API.getJump, "Jump", "yellow", myMap, lat, lng)
+                this.addMoreScoots(API.getLime, "Lime", "green", myMap, lat, lng)
+                this.addMoreScoots(API.getGotcha, "Gotcha", "grey", myMap, lat, lng)
+                this.addMoreScoots(API.getBird, "Bird", "black", myMap, lat, lng)
             })
     }
 }
@@ -276,6 +392,14 @@ class ScootMap extends Component {
         return (
             <div>
                 <div id="map"></div>
+                <div id="sidebar">
+                    <img src={spin} className="brandLogo" id="spinLogo" onClick={this.filterSpin}></img>
+                    <img src={jump} className="brandLogo" id="jumpLogo" onClick={this.filterJump}></img>
+                    <img src={lime} className="brandLogo" id="limeLogo" onClick={this.filterLime}></img>
+                    <img src={lyft} className="brandLogo" id="lyftLogo" onClick={this.filterLyft}></img>
+                    <img src={bird} className="brandLogo" id="birdLogo" onClick={this.filterBird}></img>
+                    <img src={gotcha} className="brandLogo" id="gotchaLogo" onClick={this.filterGotcha}></img>
+                </div>
                 <Footer />
             </div>
         )

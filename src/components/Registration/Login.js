@@ -31,7 +31,7 @@ class Login extends Component {
                         e.preventDefault()
                         this.props.verifyUser(this.state.email, this.state.password) }
                     }
-                    >Submit</button>
+                    >submit</button>
                 </form>
             </div>
         )

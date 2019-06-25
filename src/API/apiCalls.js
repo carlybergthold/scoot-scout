@@ -21,7 +21,7 @@ const API = {
         })
             .then(e => e.json())
     },
-    getBird: (lat, lng) => {
+    getgetBird: (lat, lng) => {
         return fetch(`https://api.bird.co/bird/nearby?latitude=${lat}&longitude=${lng}&radius=1000`, {
                     headers: {
                         "Authorization":  `${apiKeys.birdToken}`,
@@ -69,6 +69,10 @@ const API = {
     getGotcha: () => {
         return fetch("https://data.nashville.gov/resource/anqi-zsnc.json")
                     .then(w => w.json())
+    },
+    getBird: () => {
+        return fetch("https://data.nashville.gov/resource/nar3-8j89.json")
+        .then(w => w.json())
     },
     getSpin: () => {
         return fetch("https://web.spin.pm/api/gbfs/v1/nashville/free_bike_status")
