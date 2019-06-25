@@ -18,17 +18,154 @@ import gotcha from "./images/gotcha.jpeg"
 
 class ScootMap extends Component {
 
-    state = {
-        spin: true,
-        lyft: false,
-        jump: false,
-        lime: false,
-        gotcha: false,
-        bird: false
+    filterSpin = () => {
+
+        const spinLogo = document.querySelector("#spinLogo")
+
+        const clusters = document.querySelectorAll(".spinCluster")
+        for (let i = 0; i < clusters.length; i++) {
+            if (clusters[i].style.display === "none") {
+                clusters[i].style.display = "flex";
+                spinLogo.style.opacity = 1;
+            } else {
+                clusters[i].style.display = "none";
+                spinLogo.style.opacity = 0.5;
+            }
+        }
+
+        const icons = document.querySelectorAll(".spinIcon")
+        for (let i = 0; i < icons.length; i++) {
+            if (icons[i].style.display === "none") {
+                icons[i].style.display = "flex";
+            } else {
+                icons[i].style.display = "none";
+            }
+        }
     }
 
-    filterScooters = () => {
-        this.setState(state => ({ spin: !state.spin }));
+    filterJump = () => {
+
+        const jumpLogo = document.querySelector("#jumpLogo")
+
+        const clusters = document.querySelectorAll(".JumpCluster")
+        for (let i = 0; i < clusters.length; i++) {
+            if (clusters[i].style.display === "none") {
+                clusters[i].style.display = "flex";
+                jumpLogo.style.opacity = 1;
+            } else {
+                clusters[i].style.display = "none";
+                jumpLogo.style.opacity = 0.5;
+            }
+        }
+
+        const icons = document.querySelectorAll(".JumpIcon")
+        for (let i = 0; i < icons.length; i++) {
+            if (icons[i].style.display === "none") {
+                icons[i].style.display = "flex";
+            } else {
+                icons[i].style.display = "none";
+            }
+        }
+    }
+
+    filterLime = () => {
+
+        const limeLogo = document.querySelector("#limeLogo")
+
+        const clusters = document.querySelectorAll(".LimeCluster")
+        for (let i = 0; i < clusters.length; i++) {
+            if (clusters[i].style.display === "none") {
+                clusters[i].style.display = "flex";
+                limeLogo.style.opacity = 1;
+            } else {
+                clusters[i].style.display = "none";
+                limeLogo.style.opacity = 0.5;
+            }
+        }
+
+        const icons = document.querySelectorAll(".LimeIcon")
+        for (let i = 0; i < icons.length; i++) {
+            if (icons[i].style.display === "none") {
+                icons[i].style.display = "flex";
+            } else {
+                icons[i].style.display = "none";
+            }
+        }
+    }
+
+    filterLyft = () => {
+
+        const lyftLogo = document.querySelector("#lyftLogo")
+
+        const clusters = document.querySelectorAll(".LyftCluster")
+        for (let i = 0; i < clusters.length; i++) {
+            if (clusters[i].style.display === "none") {
+                clusters[i].style.display = "flex";
+                lyftLogo.style.opacity = 1;
+            } else {
+                clusters[i].style.display = "none";
+                lyftLogo.style.opacity = 0.5;
+            }
+        }
+
+        const icons = document.querySelectorAll(".LyftIcon")
+        for (let i = 0; i < icons.length; i++) {
+            if (icons[i].style.display === "none") {
+                icons[i].style.display = "flex";
+            } else {
+                icons[i].style.display = "none";
+            }
+        }
+    }
+
+    filterBird = () => {
+
+        const birdLogo = document.querySelector("#birdLogo")
+
+        const clusters = document.querySelectorAll(".BirdCluster")
+        for (let i = 0; i < clusters.length; i++) {
+            if (clusters[i].style.display === "none") {
+                clusters[i].style.display = "flex";
+                birdLogo.style.opacity = 1;
+            } else {
+                clusters[i].style.display = "none";
+                birdLogo.style.opacity = 0.5;
+            }
+        }
+
+        const icons = document.querySelectorAll(".BirdIcon")
+        for (let i = 0; i < icons.length; i++) {
+            if (icons[i].style.display === "none") {
+                icons[i].style.display = "flex";
+            } else {
+                icons[i].style.display = "none";
+            }
+        }
+    }
+
+    filterGotcha = () => {
+
+        const gotchaLogo = document.querySelector("#gotchaLogo")
+
+        const clusters = document.querySelectorAll(".GotchaCluster")
+        for (let i = 0; i < clusters.length; i++) {
+            if (clusters[i].style.display === "none") {
+                clusters[i].style.display = "flex";
+                gotchaLogo.style.opacity = 1;
+            } else {
+                clusters[i].style.display = "none";
+                gotchaLogo.style.opacity = 0.5;
+            }
+        }
+
+        const icons = document.querySelectorAll(".GotchaIcon")
+        for (let i = 0; i < icons.length; i++) {
+            if (icons[i].style.display === "none") {
+                icons[i].style.display = "flex";
+            } else {
+                icons[i].style.display = "none";
+            }
+        }
     }
 
     addSpinToMap(map, lat, lng) {
@@ -40,13 +177,21 @@ class ScootMap extends Component {
                 iconSize: [25, 41],
                 iconAnchor: [12, 41],
                 popupAnchor: [1, -34],
-                shadowSize: [41, 41]
+                shadowSize: [41, 41],
+                className: 'spinIcon',
             });
 
             const scooters = r.data.bikes;
+
             const markerClusters = L.markerClusterGroup({
-                spiderfyOnMaxZoom: true
-            });
+                iconCreateFunction: function(cluster) {
+                  return L.divIcon({
+                    html: cluster.getChildCount(),
+                    className: 'spinCluster',
+                    iconSize: L.point(50, 50)
+                });
+                }
+            })
 
             for ( var i = 0; i < scooters.length; i++ )
             {
@@ -70,15 +215,21 @@ class ScootMap extends Component {
             iconSize: [25, 41],
             iconAnchor: [12, 41],
             popupAnchor: [1, -34],
-            shadowSize: [41, 41]
+            shadowSize: [41, 41],
+            className: `${brand}Icon`,
         });
 
         func().then(r => {
-            console.log(r, "add")
             const scooters = r;
             const markerClusters = L.markerClusterGroup({
-                spiderfyOnMaxZoom: true
-            });
+                iconCreateFunction: function(cluster) {
+                  return L.divIcon({
+                    html: cluster.getChildCount(),
+                    className: `${brand}Cluster`,
+                    iconSize: L.point(50, 50)
+                });
+                }
+            })
 
             for ( var i = 0; i < scooters.length; i++ )
             {
@@ -227,29 +378,12 @@ class ScootMap extends Component {
                 }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup();
 
                 this.getUserAddress(myMap);
-                if (this.state.spin) {
-                    this.addSpinToMap(myMap, lat, lng)
-                }
-
-                if (this.state.lyft) {
-                    this.addMoreScoots(API.getLyft, "Lyft", "red", myMap, lat, lng)
-                }
-
-                if (this.state.jump) {
-                    this.addMoreScoots(API.getJump, "Jump", "yellow", myMap, lat, lng)
-                }
-
-                if (this.state.lime) {
-                    this.addMoreScoots(API.getLime, "Lime", "green", myMap, lat, lng)
-                }
-
-                if (this.state.gotcha) {
-                    this.addMoreScoots(API.getGotcha, "Gotcha", "grey", myMap, lat, lng)
-                }
-
-                if (this.state.bird) {
-                    this.addMoreScoots(API.getBird, "Bird", "black", myMap, lat, lng)
-                }
+                this.addSpinToMap(myMap, lat, lng)
+                this.addMoreScoots(API.getLyft, "Lyft", "red", myMap, lat, lng)
+                this.addMoreScoots(API.getJump, "Jump", "yellow", myMap, lat, lng)
+                this.addMoreScoots(API.getLime, "Lime", "green", myMap, lat, lng)
+                this.addMoreScoots(API.getGotcha, "Gotcha", "grey", myMap, lat, lng)
+                this.addMoreScoots(API.getBird, "Bird", "black", myMap, lat, lng)
             })
     }
 }
@@ -259,12 +393,12 @@ class ScootMap extends Component {
             <div>
                 <div id="map"></div>
                 <div id="sidebar">
-                    <img src={spin} className="brandLogo" onClick={this.filterScooters}></img>
-                    <img src={jump} className="brandLogo"></img>
-                    <img src={lime} className="brandLogo"></img>
-                    <img src={lyft} className="brandLogo"></img>
-                    <img src={bird} className="brandLogo"></img>
-                    <img src={gotcha} className="brandLogo"></img>
+                    <img src={spin} className="brandLogo" id="spinLogo" onClick={this.filterSpin}></img>
+                    <img src={jump} className="brandLogo" id="jumpLogo" onClick={this.filterJump}></img>
+                    <img src={lime} className="brandLogo" id="limeLogo" onClick={this.filterLime}></img>
+                    <img src={lyft} className="brandLogo" id="lyftLogo" onClick={this.filterLyft}></img>
+                    <img src={bird} className="brandLogo" id="birdLogo" onClick={this.filterBird}></img>
+                    <img src={gotcha} className="brandLogo" id="gotchaLogo" onClick={this.filterGotcha}></img>
                 </div>
                 <Footer />
             </div>

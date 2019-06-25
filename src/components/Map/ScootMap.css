@@ -144,4 +144,68 @@
     .brandLogo {
         width: 3rem;
     }
+
+    .spinCluster {
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+        color: black;
+        font-weight: 700;
+    }
+
+    .JumpCluster {
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+        color: black;
+        font-weight: 700;
+    }
+
+    .LimeCluster {
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+        color: black;
+        font-weight: 700;
+    }
+
+    .LyftCluster {
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+        color: black;
+        font-weight: 700;
+    }
+
+    .BirdCluster {
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+        color: black;
+        font-weight: 700;
+    }
+
+    .GotchaCluster {
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+        color: black;
+        font-weight: 700;
+    }
+
+    .leaflet-popup-close-button {
+        z-index: 300;
+    }
 }
