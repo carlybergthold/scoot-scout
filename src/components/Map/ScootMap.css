@@ -146,7 +146,7 @@
     }
 
     .spinCluster {
-        background-color: white;
+        background-color: rgba(253, 101, 0, 0.63);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -156,7 +156,7 @@
     }
 
     .JumpCluster {
-        background-color: white;
+        background-color: rgba(247, 6, 26, 0.61);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -166,7 +166,7 @@
     }
 
     .LimeCluster {
-        background-color: white;
+        background-color: rgba(157, 238, 6, 0.61);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -176,7 +176,7 @@
     }
 
     .LyftCluster {
-        background-color: white;
+        background-color: rgba(230, 17, 99, 0.623);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -186,7 +186,7 @@
     }
 
     .BirdCluster {
-        background-color: white;
+        background-color: rgba(255, 255, 255, 0.808);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -196,7 +196,7 @@
     }
 
     .GotchaCluster {
-        background-color: white;
+        background-color: rgba(0, 0, 0, 0.404);
         display: flex;
         justify-content: center;
         align-items: center;

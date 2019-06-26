@@ -8,17 +8,19 @@ import API from "../../API/apiCalls";
 class SavedLocations extends Component {
 
     state = {
-        savedLocations: [],
+        savedLocations: "",
         username: ""
     }
 
 
     componentDidMount() {
-        const sessionUser = localStorage.getItem('user')
-        const user = JSON.parse(sessionUser);
-        const id = user.id;
-        API.getLocations(id).then(results => this.setState({savedLocations: results.savedLocations}))
-        // API.getUsername(userId).then(r => this.setState({username: r.username}))
+        if (localStorage.getItem('user')) {
+            const sessionUser = localStorage.getItem('user')
+            const user = JSON.parse(sessionUser);
+            const id = user.id;
+            API.getLocations(id).then(results => this.setState({savedLocations: results.savedLocations}))
+            .then(() => API.getUsername(id).then(r => this.setState({username: r.username})))
+        }
     }
 
     deleteLocation = (savedLocations, id) => {
@@ -35,7 +37,11 @@ class SavedLocations extends Component {
         return (
                 <div id="locations">
                     <img src={scooter3} className="topLogo" alt="Scoot-Scout-logo"></img>
-                        <h1 id="locationsHeader">my locations</h1>
+                        {
+                            this.state.username ?
+                            <h1 id="locationsHeader">{this.state.username}'s locations</h1>
+                            : <h1 id="locationsHeader">my locations</h1>
+                        }
                         {
                             this.state.savedLocations ?
                             this.state.savedLocations.map(location => {return <section key={location.id} className={location.location}><p>{location.address}</p>

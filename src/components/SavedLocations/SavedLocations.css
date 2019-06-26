@@ -17,6 +17,10 @@
         position: relative;
     }
 
+    #locationsHeader {
+        text-transform: lowercase;
+    }
+
     .locationOpenBtn {
         background-color: black;
         padding: 0.6rem;
