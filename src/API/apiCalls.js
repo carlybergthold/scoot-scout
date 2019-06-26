@@ -42,6 +42,14 @@ const API = {
             })
             .then(response => response.json());
     },
+    delete: (path, id) => {
+        return fetch(`http://localhost:8088/${path}/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-type": "application/json"
+            }
+            })
+    },
     get: (path, id) => {
         return fetch(`http://localhost:8088/${path}/${id}`)
             .then(response => response.json());

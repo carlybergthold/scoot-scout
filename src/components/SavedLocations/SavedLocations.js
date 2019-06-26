@@ -12,10 +12,23 @@ class SavedLocations extends Component {
         username: ""
     }
 
+
     componentDidMount() {
-        const userId = this.props.userId;
-        API.getLocations(userId).then(results => this.setState({savedLocations: results.savedLocations}))
+        const sessionUser = localStorage.getItem('user')
+        const user = JSON.parse(sessionUser);
+        const id = user.id;
+        API.getLocations(id).then(results => this.setState({savedLocations: results.savedLocations}))
         // API.getUsername(userId).then(r => this.setState({username: r.username}))
+    }
+
+    deleteLocation = (savedLocations, id) => {
+        const sessionUser = localStorage.getItem('user')
+        const user = JSON.parse(sessionUser);
+        const userId = user.id;
+
+        API.delete(savedLocations, id).then(results => this.setState({savedLocations: results.savedLocations}))
+        .then(() => API.getLocations(userId))
+        .then(results => this.setState({savedLocations: results.savedLocations}))
     }
 
     render() {
@@ -26,6 +39,7 @@ class SavedLocations extends Component {
                         {
                             this.state.savedLocations ?
                             this.state.savedLocations.map(location => {return <section key={location.id} className={location.location}><p>{location.address}</p>
+                            <span className="locationDelete" onClick={() => this.deleteLocation("savedLocations", location.id)}>x</span>
                             <div className="btnContainer">
                             <button className="locationOpenBtn">
                                 <Link to='/map' onClick={() => this.props.getAddress(location.lat, location.lng, location.address)}>Open in Map</Link>

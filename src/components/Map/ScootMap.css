@@ -205,7 +205,7 @@
         font-weight: 700;
     }
 
-    .leaflet-popup-close-button {
-        z-index: 300;
+    .circleMarker {
+        z-index: 2000;
     }
 }
