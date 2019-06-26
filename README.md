@@ -1,10 +1,10 @@
-## Scoot Scout
+# Scoot Scout
 
 Motorized scooters have revolutionized the way city dwellers get around, and more scooter companies pop up almost monthly. Nearly 10 companies operate scooters in Nashville now - so why take the time to open up each of their apps to locate your nearest ride? 
 
 At Scoot Scout, we aren't brand loyal; we're scooter loyal. Simply open up the app, and you'll see all the scooters near you, helping you get to where you're going sooner.
 
-# Features
+## Features
 * find scooters near you or search for scooters at a different location
 * save locations you check often and open them up with one click
 * filter scooters by brand
@@ -14,9 +14,7 @@ At Scoot Scout, we aren't brand loyal; we're scooter loyal. Simply open up the a
 
 <img src="https://user-images.githubusercontent.com/46655107/60198859-39e54d80-9808-11e9-8bac-4cfcdf9c699c.jpg" alt="scoot-scout-map" align="left" height="400">
 
-<img src="https://user-images.githubusercontent.com/46655107/60198860-39e54d80-9808-11e9-91ed-ce0bbebff999.jpg" alt="scoot-scout-registration-page" align="right" height="400">
-
-<img src="https://user-images.githubusercontent.com/46655107/60198861-39e54d80-9808-11e9-97f5-bdb748ad9a18.jpg" alt="scoot-scout-saved-locations" align="right" height="400">
+<img src="https://user-images.githubusercontent.com/46655107/60198861-39e54d80-9808-11e9-97f5-bdb748ad9a18.jpg" alt="scoot-scout-saved-locations" align="left" height="400">
 
 # Technology Used
 * React.js
