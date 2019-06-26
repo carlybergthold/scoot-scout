@@ -16,7 +16,6 @@ At Scoot Scout, we aren't brand loyal; we're scoot loyal. Simply open up the app
 
 <img src="https://user-images.githubusercontent.com/46655107/60198861-39e54d80-9808-11e9-97f5-bdb748ad9a18.jpg" alt="scoot-scout-saved-locations" align="left" height="452">
 
----
 
 </br>
 </br>
