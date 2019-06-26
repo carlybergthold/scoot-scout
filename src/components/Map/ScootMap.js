@@ -137,8 +137,10 @@ class ScootMap extends Component {
         for (let i = 0; i < icons.length; i++) {
             if (icons[i].style.display === "none") {
                 icons[i].style.display = "flex";
+                birdLogo.style.opacity = 1;
             } else {
                 icons[i].style.display = "none";
+                birdLogo.style.opacity = 0.5;
             }
         }
     }
@@ -185,11 +187,11 @@ class ScootMap extends Component {
 
             const markerClusters = L.markerClusterGroup({
                 iconCreateFunction: function(cluster) {
-                  return L.divIcon({
-                    html: cluster.getChildCount(),
-                    className: 'spinCluster',
-                    iconSize: L.point(50, 50)
-                });
+                    return L.divIcon({
+                        html: cluster.getChildCount(),
+                        className: 'spinCluster',
+                        iconSize: L.point(50, 50)
+                    })
                 }
             })
 
@@ -223,11 +225,11 @@ class ScootMap extends Component {
             const scooters = r;
             const markerClusters = L.markerClusterGroup({
                 iconCreateFunction: function(cluster) {
-                  return L.divIcon({
+                   return L.divIcon({
                     html: cluster.getChildCount(),
                     className: `${brand}Cluster`,
                     iconSize: L.point(50, 50)
-                });
+                  });
                 }
             })
 
@@ -248,9 +250,8 @@ class ScootMap extends Component {
     }
 
     getUserAddress = (map) => {
-
         let popupText;
-        if (this.props.userId !== "") {
+        if (localStorage.getItem('user')) {
             popupText = "</br><button class='saveAddBtn'>Save to My Locations</button></br><p class='hide hidden'>Saved!</p></br><button class='currentLocationBtn hidden'>Back to Current Location</button>"
         } else popupText = "</br><a href='/register'>Register to Save Location</a></br><button class='currentLocationBtn'>Back to Current Location</button><button class='saveAddBtn hidden'>Save to My Locations</button>"
 
@@ -300,7 +301,7 @@ class ScootMap extends Component {
             document.querySelector(".currentLocationBtn").addEventListener("click", function() {
                 API.getUserLocation()
                 .then(user => {
-                    map.setView([user.location.lat, user.location.lng], 14);
+                    map.setView([user.location.lat, user.location.lng], 16);
                 })
             })
         })
@@ -323,7 +324,7 @@ class ScootMap extends Component {
             let lat = this.props.startingLat;
             let lng = this.props.startingLng;
 
-            const myMap = L.map('map').setView([lat, lng], 14);
+            const myMap = L.map('map').setView([lat, lng], 16);
 
             L.tileLayer("https://api.mapbox.com/styles/v1/carlymita/cjwwjwccr51kh1cpcw995d56n/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2FybHltaXRhIiwiYSI6ImNqd3FoeHZtYjE5cjA0N21nMGhheGk4NXgifQ.jf0Z7pkxDwB17dk-2xPtFw", {
                 id: 'mapbox.streets',
@@ -361,7 +362,7 @@ class ScootMap extends Component {
                 let lat = user.location.lat
                 let lng = user.location.lng
 
-                const myMap = L.map('map').setView([lat, lng], 14);
+                const myMap = L.map('map').setView([lat, lng], 16);
 
                 L.tileLayer("https://api.mapbox.com/styles/v1/carlymita/cjwwjwccr51kh1cpcw995d56n/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2FybHltaXRhIiwiYSI6ImNqd3FoeHZtYjE5cjA0N21nMGhheGk4NXgifQ.jf0Z7pkxDwB17dk-2xPtFw", {
                     id: 'mapbox.streets',
@@ -374,7 +375,9 @@ class ScootMap extends Component {
                     color: 'red',
                     fillColor: '#f03',
                     fillOpacity: 0.5,
-                    radius: 12
+                    radius: 12,
+                    iconSize: [98, 114],
+                    iconAnchor: [49, 114]
                 }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup();
 
                 this.getUserAddress(myMap);

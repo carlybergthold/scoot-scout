@@ -14,6 +14,11 @@
         margin: 0.5rem;
         padding: 1rem;
         background-color: white;
+        position: relative;
+    }
+
+    #locationsHeader {
+        text-transform: lowercase;
     }
 
     .locationOpenBtn {
@@ -37,4 +42,13 @@
         display: flex;
         justify-content: center;
     }
+
+    .locationDelete {
+        position: absolute;
+        top: 0.5rem;
+        right: 1rem;
+    }
+
 }
+
+
