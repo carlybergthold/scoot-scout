@@ -10,11 +10,11 @@ At Scoot Scout, we aren't brand loyal; we're scooter loyal. Simply open up the a
 * filter scooters by brand
 * get walkable directions to the scooter nearest you
 
-<img src="https://user-images.githubusercontent.com/46655107/60198858-394cb700-9808-11e9-9c9e-9563d7a909d4.jpg" alt="scoot-scout-landing-page" align="left" height="400">
+<img src="https://user-images.githubusercontent.com/46655107/60198858-394cb700-9808-11e9-9c9e-9563d7a909d4.jpg" alt="scoot-scout-landing-page" align="left" height="450">
 
-<img src="https://user-images.githubusercontent.com/46655107/60198859-39e54d80-9808-11e9-8bac-4cfcdf9c699c.jpg" alt="scoot-scout-map" align="left" height="400">
+<img src="https://user-images.githubusercontent.com/46655107/60198859-39e54d80-9808-11e9-8bac-4cfcdf9c699c.jpg" alt="scoot-scout-map" align="left" height="450">
 
-<img src="https://user-images.githubusercontent.com/46655107/60198861-39e54d80-9808-11e9-97f5-bdb748ad9a18.jpg" alt="scoot-scout-saved-locations" align="left" height="400">
+<img src="https://user-images.githubusercontent.com/46655107/60198861-39e54d80-9808-11e9-97f5-bdb748ad9a18.jpg" alt="scoot-scout-saved-locations" align="left" height="450">
 
 # Technology Used
 * React.js
