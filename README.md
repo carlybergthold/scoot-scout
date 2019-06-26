@@ -18,6 +18,25 @@ At Scoot Scout, we aren't brand loyal; we're scoot loyal. Simply open up the app
 
 ---
 
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
 ## Technology Used
 * React.js
 * HTML5/CSS
