@@ -1,8 +1,8 @@
 # Scoot Scout
 
-Motorized scooters have revolutionized the way city dwellers get around, and more scooter companies pop up almost monthly. Nearly 10 companies operate scooters in Nashville now - so why take the time to open up each of their apps to locate your nearest ride? 
+Motorized scooters have revolutionized the way city dwellers get around, and more and more scooter companies are popping up to meet the demand. But why waste time opening up each company's app to locate your nearest ride? 
 
-At Scoot Scout, we aren't brand loyal; we're scooter loyal. Simply open up the app, and you'll see all the scooters near you, helping you get to where you're going sooner.
+At Scoot Scout, we aren't brand loyal; we're scoot loyal. Simply open up the app, and you can see all the scooters near you. Yeah. Take that, Big Scooter.
 
 ## Features
 * find scooters near you or search for scooters at a different location
@@ -10,13 +10,36 @@ At Scoot Scout, we aren't brand loyal; we're scooter loyal. Simply open up the a
 * filter scooters by brand
 * get walkable directions to the scooter nearest you
 
-<img src="https://user-images.githubusercontent.com/46655107/60198858-394cb700-9808-11e9-9c9e-9563d7a909d4.jpg" alt="scoot-scout-landing-page" align="left" height="450">
+</br>
 
-<img src="https://user-images.githubusercontent.com/46655107/60198859-39e54d80-9808-11e9-8bac-4cfcdf9c699c.jpg" alt="scoot-scout-map" align="left" height="450">
+<img src="https://user-images.githubusercontent.com/46655107/60198858-394cb700-9808-11e9-9c9e-9563d7a909d4.jpg" alt="scoot-scout-landing-page" align="left" margin-left="100px" height="450">
 
-<img src="https://user-images.githubusercontent.com/46655107/60198861-39e54d80-9808-11e9-97f5-bdb748ad9a18.jpg" alt="scoot-scout-saved-locations" align="left" height="450">
+<img src="https://user-images.githubusercontent.com/46655107/60198859-39e54d80-9808-11e9-8bac-4cfcdf9c699c.jpg" alt="scoot-scout-map" align="left" height="445">
 
-# Technology Used
+<img src="https://user-images.githubusercontent.com/46655107/60198861-39e54d80-9808-11e9-97f5-bdb748ad9a18.jpg" alt="scoot-scout-saved-locations" align="left" height="452">
+
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+## Technology Used
 * React.js
 * HTML5/CSS
 * Javascript
@@ -24,7 +47,7 @@ At Scoot Scout, we aren't brand loyal; we're scooter loyal. Simply open up the a
 * Leaflet (markercluster, geosearch)
 * Mapbox
 
-# APIs Used
+## APIs Used
 * Google
 * Bird
 * Lime
