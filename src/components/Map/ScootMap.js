@@ -15,7 +15,6 @@ import lyft from "./images/lyft.png"
 import gotcha from "./images/gotcha.jpeg"
 
 
-
 class ScootMap extends Component {
 
     filterSpin = () => {
@@ -187,13 +186,19 @@ class ScootMap extends Component {
 
             const markerClusters = L.markerClusterGroup({
                 iconCreateFunction: function(cluster) {
-                    return L.divIcon({
-                        html: cluster.getChildCount(),
-                        className: 'spinCluster',
-                        iconSize: L.point(50, 50)
-                    })
-                }
+                    var childCount = cluster.getChildCount();
+                    var c = ' size';
+                    if (childCount < 50) {
+                      c += 'small';
+                    }
+                    else {
+                      c += 'large';
+                    }
+                    return new L.DivIcon({ html: childCount,
+                     className: `spinCluster` + c, iconSize: new L.Point(50, 50) });
+                    }
             })
+
 
             for ( var i = 0; i < scooters.length; i++ )
             {
@@ -207,6 +212,7 @@ class ScootMap extends Component {
                 markerClusters.addLayer( m );
             }
             map.addLayer( markerClusters );
+
         })
     }
 
@@ -225,12 +231,18 @@ class ScootMap extends Component {
             const scooters = r;
             const markerClusters = L.markerClusterGroup({
                 iconCreateFunction: function(cluster) {
-                   return L.divIcon({
-                    html: cluster.getChildCount(),
-                    className: `${brand}Cluster`,
-                    iconSize: L.point(50, 50)
-                  });
-                }
+                    var childCount = cluster.getChildCount();
+                    var c = ' size';
+                    if (childCount < 50) {
+                      c += 'small';
+                    }
+                    else {
+                      c += 'large';
+                    }
+    
+                    return new L.DivIcon({ html: childCount,
+                     className: `${brand}Cluster` + c, iconSize: new L.Point(50, 50) });
+                    }
             })
 
             for ( var i = 0; i < scooters.length; i++ )
@@ -301,7 +313,7 @@ class ScootMap extends Component {
             document.querySelector(".currentLocationBtn").addEventListener("click", function() {
                 API.getUserLocation()
                 .then(user => {
-                    map.setView([user.location.lat, user.location.lng], 16);
+                    map.setView([user.location.lat, user.location.lng], 15);
                 })
             })
         })
@@ -313,7 +325,7 @@ class ScootMap extends Component {
             .then(user => {
                 const lat = user.location.lat;
                 const lng = user.location.lng;
-                map.setView([lat, lng], 14);
+                map.setView([lat, lng], 15);
             })
         })
     }
@@ -324,7 +336,7 @@ class ScootMap extends Component {
             let lat = this.props.startingLat;
             let lng = this.props.startingLng;
 
-            const myMap = L.map('map').setView([lat, lng], 16);
+            const myMap = L.map('map').setView([lat, lng], 15);
 
             L.tileLayer("https://api.mapbox.com/styles/v1/carlymita/cjwwjwccr51kh1cpcw995d56n/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2FybHltaXRhIiwiYSI6ImNqd3FoeHZtYjE5cjA0N21nMGhheGk4NXgifQ.jf0Z7pkxDwB17dk-2xPtFw", {
                 id: 'mapbox.streets',
@@ -339,7 +351,7 @@ class ScootMap extends Component {
             document.querySelector(".currentLocationBtn").addEventListener("click", function() {
                 API.getUserLocation()
                 .then(user => {
-                    myMap.setView([user.location.lat, user.location.lng], 14);
+                    myMap.setView([user.location.lat, user.location.lng], 15);
                     L.circleMarker([user.location.lat, user.location.lng], {
                         color: 'red',
                         fillColor: '#f03',
@@ -361,7 +373,7 @@ class ScootMap extends Component {
                 let lat = user.coords.latitude
                 let lng = user.coords.longitude
 
-                const myMap = L.map('map').setView([lat, lng], 16);
+                const myMap = L.map('map').setView([lat, lng], 15);
 
                 L.tileLayer("https://api.mapbox.com/styles/v1/carlymita/cjwwjwccr51kh1cpcw995d56n/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2FybHltaXRhIiwiYSI6ImNqd3FoeHZtYjE5cjA0N21nMGhheGk4NXgifQ.jf0Z7pkxDwB17dk-2xPtFw", {
                     id: 'mapbox.streets',
@@ -372,12 +384,8 @@ class ScootMap extends Component {
 
                 L.circleMarker([lat, lng], {
                     color: 'red',
-                    fillColor: '#f03',
-                    fillOpacity: 0.5,
-                    radius: 12,
-                    iconSize: [98, 114],
-                    iconAnchor: [49, 114]
-                }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup();
+                    fillColor: 'red'
+                }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup().bringToFront();
 
                 this.getUserAddress(myMap);
                 this.addSpinToMap(myMap, lat, lng)
@@ -386,6 +394,12 @@ class ScootMap extends Component {
                 this.addMoreScoots(API.getLime, "Lime", "green", myMap, lat, lng)
                 this.addMoreScoots(API.getGotcha, "Gotcha", "grey", myMap, lat, lng)
                 this.addMoreScoots(API.getBird, "Bird", "black", myMap, lat, lng)
+
+                // myMap.on('zoom', function() {
+                //     for (let i = 50; i < 800; i++) {
+                //         $(`.leaflet-marker-icon:contains(${i})`).remove();
+                //     }
+                // })
             })
     }
 }

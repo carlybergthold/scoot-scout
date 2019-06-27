@@ -206,7 +206,7 @@
         font-weight: 700;
     }
 
-    .circleMarker {
-        z-index: 2000;
+    .sizelarge {
+        display: none;
     }
 }
