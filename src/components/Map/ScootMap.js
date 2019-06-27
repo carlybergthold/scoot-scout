@@ -357,10 +357,9 @@ class ScootMap extends Component {
             this.addMoreScoots(API.getBird, "Bird", "black", myMap, lat, lng)
         }
         else {
-            API.getUserLocation()
-            .then(user => {
-                let lat = user.location.lat
-                let lng = user.location.lng
+            navigator.geolocation.getCurrentPosition(user => {
+                let lat = user.coords.latitude
+                let lng = user.coords.longitude
 
                 const myMap = L.map('map').setView([lat, lng], 16);
 
@@ -396,12 +395,12 @@ class ScootMap extends Component {
             <div>
                 <div id="map"></div>
                 <div id="sidebar">
-                    <img src={spin} className="brandLogo" id="spinLogo" onClick={this.filterSpin}></img>
-                    <img src={jump} className="brandLogo" id="jumpLogo" onClick={this.filterJump}></img>
-                    <img src={lime} className="brandLogo" id="limeLogo" onClick={this.filterLime}></img>
-                    <img src={lyft} className="brandLogo" id="lyftLogo" onClick={this.filterLyft}></img>
-                    <img src={bird} className="brandLogo" id="birdLogo" onClick={this.filterBird}></img>
-                    <img src={gotcha} className="brandLogo" id="gotchaLogo" onClick={this.filterGotcha}></img>
+                    <img src={spin} className="brandLogo" id="spinLogo" alt="spin-logo" onClick={this.filterSpin}></img>
+                    <img src={jump} className="brandLogo" id="jumpLogo" alt="jump-logo" onClick={this.filterJump}></img>
+                    <img src={lime} className="brandLogo" id="limeLogo" alt="lime-logo" onClick={this.filterLime}></img>
+                    <img src={lyft} className="brandLogo" id="lyftLogo" alt="lyft-logo" onClick={this.filterLyft}></img>
+                    <img src={bird} className="brandLogo" id="birdLogo" alt="bird-logo" onClick={this.filterBird}></img>
+                    <img src={gotcha} className="brandLogo" id="gotchaLogo" alt="gotcha-logo" onClick={this.filterGotcha}></img>
                 </div>
                 <Footer />
             </div>

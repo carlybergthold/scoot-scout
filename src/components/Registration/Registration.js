@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import { withRouter } from 'react-router'
 import "./Registration.css"
 import scooter3 from "../Homepage/scooter3.png"
-import API from "../../API/apiCalls";
 
 
 class Registration extends Component {
