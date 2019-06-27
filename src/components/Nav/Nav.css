@@ -151,6 +151,9 @@
       position: fixed;
       bottom: 0;
       z-index: 2;
+      width: 100%;
+      display: flex;
+      justify-content: center;
   }
 
   #addLocationBtn {
@@ -172,8 +175,7 @@
     height: 2rem;
     width: 4rem;
     position: fixed;
-    bottom: 15px;
-    margin-left: 9.5rem;
+    bottom: 0.8rem;
     background-color: white;
     color: black;
     border-radius: 15px;
