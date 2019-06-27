@@ -31,7 +31,7 @@ class ScootApp extends Component {
       API.post("users", userObj)
       .then(newUser => {
           localStorage.setItem('user', JSON.stringify(newUser));
-          this.setState({userId: newUser.id}, () =>
+          this.setState({userId: newUser.id, navLink: "log out" , class: "hidden"}, () =>
           this.props.history.push('/map'));
         })
   }
@@ -49,7 +49,7 @@ class ScootApp extends Component {
             else {
               const user = matchingUsers[0];
               localStorage.setItem('user', JSON.stringify(user));
-              this.setState({userId: user.id}, () => this.props.history.push('/map'));
+              this.setState({userId: user.id, navLink: "log out" , class: "hidden"}, () => this.props.history.push('/map'));
             }
           })
     }
@@ -62,7 +62,6 @@ class ScootApp extends Component {
 
       } else {
           this.props.history.push('/login')
-          this.setState(state => ({ userId: "", navLink: "log out" , class: "hidden" }))
       }
     }
 

@@ -12,7 +12,6 @@ class SavedLocations extends Component {
         username: ""
     }
 
-
     componentDidMount() {
         if (localStorage.getItem('user')) {
             const sessionUser = localStorage.getItem('user')

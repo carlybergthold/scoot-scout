@@ -8,15 +8,16 @@
 
     .geosearch {
         position: fixed;
-        bottom: 4rem;
+        bottom: 3rem;
         left: 0.5rem;
         right: 0.5rem;
         background-color: white;
-        height: 10rem;
+        height: 8rem;
         margin-right: 1rem;
         display: none;
         border-radius: 25px;
         overflow: scroll;
+        border: 1px solid black;
     }
 
     .leaflet-top {
@@ -136,9 +137,9 @@
         position: fixed;
         width: 4rem;
         left: 1rem;
-        top: 12rem;
+        top: 10rem;
         bottom: 0;
-        z-index: 9;
+        z-index: 2;
     }
 
     .brandLogo {
@@ -205,7 +206,7 @@
         font-weight: 700;
     }
 
-    .circleMarker {
-        z-index: 2000;
+    .sizelarge {
+        display: none;
     }
 }
