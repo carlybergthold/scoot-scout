@@ -514,7 +514,7 @@ class ScootMap extends Component {
             marker: {
                 icon: violetIcon
             },
-            popupFormat: ({ result }) => result.label + popupText,
+            popupFormat: ({ result }) => `<div style='width: 10rem'>${result.label} ${popupText}</div>`,
             maxMarkers: 1,
             retainZoomLevel: false,
             animateZoom: true,
@@ -610,8 +610,8 @@ class ScootMap extends Component {
                 shadowSize: [41, 41]
             });
 
-            new L.marker([lat, lng], {icon: violetIcon}).addTo(myMap).bindPopup(`${this.props.address} </br>
-            <button class="currentLocationBtn">Back to Current Location</button>`).openPopup()
+            new L.marker([lat, lng], {icon: violetIcon}).addTo(myMap).bindPopup(`<div style='width: 10rem'>${this.props.address} </br>
+            <button class="currentLocationBtn">Back to Current Location</button></div>`).openPopup()
 
             document.querySelector(".currentLocationBtn").addEventListener("click", function() {
                 API.getUserLocation()
@@ -627,8 +627,8 @@ class ScootMap extends Component {
             })
             this.getUserAddress(myMap);
             this.addSpinToMap(myMap, lat, lng)
-            this.addLyftToMap("Lyft", "red", myMap, lat, lng)
-            this.addJumpToMap("Jump", "yellow", myMap, lat, lng)
+            this.addLyftToMap("Lyft", "yellow", myMap, lat, lng)
+            this.addJumpToMap("Jump", "red", myMap, lat, lng)
             this.addLimeToMap("Lime", "green", myMap, lat, lng)
             this.addGotchaToMap("Gotcha", "grey", myMap, lat, lng)
             this.addBirdToMap("Bird", "black", myMap, lat, lng)
@@ -654,8 +654,8 @@ class ScootMap extends Component {
 
                 this.getUserAddress(myMap);
                 this.addSpinToMap(myMap, lat, lng)
-                this.addLyftToMap("Lyft", "red", myMap, lat, lng)
-                this.addJumpToMap("Jump", "yellow", myMap, lat, lng)
+                this.addLyftToMap("Lyft", "yellow", myMap, lat, lng)
+                this.addJumpToMap("Jump", "red", myMap, lat, lng)
                 this.addLimeToMap("Lime", "green", myMap, lat, lng)
                 this.addGotchaToMap("Gotcha", "grey", myMap, lat, lng)
                 this.addBirdToMap("Bird", "black", myMap, lat, lng)
