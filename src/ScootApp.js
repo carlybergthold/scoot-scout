@@ -72,7 +72,6 @@ class ScootApp extends Component {
         if (user) {
           this.setState({ userId: user.id, navLink: "log out", class: "hidden" })
         } else {
-          console.log("no user in session storage (from appviews)")
           this.setState(state => ({ navLink: "log in" , class: "registerlink"}))
         }
         API.getUserLocation()

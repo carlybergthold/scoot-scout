@@ -385,7 +385,7 @@ class ScootMap extends Component {
                 L.circleMarker([lat, lng], {
                     color: 'red',
                     fillColor: 'red'
-                }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup().bringToFront();
+                }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup();
 
                 this.getUserAddress(myMap);
                 this.addSpinToMap(myMap, lat, lng)
@@ -394,12 +394,6 @@ class ScootMap extends Component {
                 this.addMoreScoots(API.getLime, "Lime", "green", myMap, lat, lng)
                 this.addMoreScoots(API.getGotcha, "Gotcha", "grey", myMap, lat, lng)
                 this.addMoreScoots(API.getBird, "Bird", "black", myMap, lat, lng)
-
-                // myMap.on('zoom', function() {
-                //     for (let i = 50; i < 800; i++) {
-                //         $(`.leaflet-marker-icon:contains(${i})`).remove();
-                //     }
-                // })
             })
     }
 }

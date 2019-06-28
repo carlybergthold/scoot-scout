@@ -158,9 +158,7 @@
 
     .JumpCluster {
         background-color: rgba(247, 6, 26, 0.61);
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        text-align: center;
         border-radius: 50px;
         color: black;
         font-weight: 700;
@@ -168,9 +166,7 @@
 
     .LimeCluster {
         background-color: rgba(157, 238, 6, 0.61);
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        text-align: center;
         border-radius: 50px;
         color: black;
         font-weight: 700;
@@ -178,9 +174,7 @@
 
     .LyftCluster {
         background-color: rgba(230, 17, 99, 0.623);
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        text-align: center;
         border-radius: 50px;
         color: black;
         font-weight: 700;
@@ -188,9 +182,7 @@
 
     .BirdCluster {
         background-color: rgba(255, 255, 255, 0.808);
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        text-align: center;
         border-radius: 50px;
         color: black;
         font-weight: 700;
@@ -198,9 +190,7 @@
 
     .GotchaCluster {
         background-color: rgba(0, 0, 0, 0.404);
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        text-align: center;
         border-radius: 50px;
         color: black;
         font-weight: 700;
