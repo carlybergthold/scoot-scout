@@ -17,159 +17,214 @@ import gotcha from "./images/gotcha.jpeg"
 
 class ScootMap extends Component {
 
+    state = {
+        showSpin: true,
+        showJump: true,
+        showLime: true,
+        showLyft: true,
+        showBird: true,
+        showGotcha: true
+    }
+
+    apiCallsForScoots = () => {
+        API.getJump().then(r => {
+            this.setState({ jump: r})
+        })
+        API.getSpin().then(r => {
+            this.setState({spin: r.data.bikes})
+        })
+        .then(() => {
+            API.getLime().then(r => {
+                this.setState({ lime: r})
+            })
+        })
+        .then(() => {
+            API.getLyft().then(r => {
+                this.setState({ lyft: r})
+            })
+        })
+        .then(() => {
+            API.getBird().then(r => {
+                this.setState({ bird: r})
+            })
+        })
+        .then(() => {
+            API.getGotcha().then(r => {
+                this.setState({ gotcha: r})
+            })
+        })
+    }
+
     filterSpin = () => {
+        this.setState(state => ({ showSpin: !state.showSpin }));
 
-        const spinLogo = document.querySelector("#spinLogo")
+        const clusters = document.querySelectorAll(`.spinCluster`)
+        const logo = document.querySelector(`#spinLogo`)
+        const icons = document.querySelectorAll(`.spinIcon`)
 
-        const clusters = document.querySelectorAll(".spinCluster")
         for (let i = 0; i < clusters.length; i++) {
-            if (clusters[i].style.display === "none") {
-                clusters[i].style.display = "flex";
-                spinLogo.style.opacity = 1;
+            if (this.state.showSpin) {
+                clusters[i].classList.remove("hidden");
+                logo.style.opacity = 1;
             } else {
-                clusters[i].style.display = "none";
-                spinLogo.style.opacity = 0.5;
+                clusters[i].classList.add("hidden");
+                logo.style.opacity = 0.5;
             }
         }
 
-        const icons = document.querySelectorAll(".spinIcon")
         for (let i = 0; i < icons.length; i++) {
-            if (icons[i].style.display === "none") {
-                icons[i].style.display = "flex";
+            if (this.state.showSpin) {
+                icons[i].classList.remove("hidden");
+                logo.style.opacity = 1;
             } else {
-                icons[i].style.display = "none";
-            }
-        }
-    }
-
-    filterJump = () => {
-
-        const jumpLogo = document.querySelector("#jumpLogo")
-
-        const clusters = document.querySelectorAll(".JumpCluster")
-        for (let i = 0; i < clusters.length; i++) {
-            if (clusters[i].style.display === "none") {
-                clusters[i].style.display = "flex";
-                jumpLogo.style.opacity = 1;
-            } else {
-                clusters[i].style.display = "none";
-                jumpLogo.style.opacity = 0.5;
-            }
-        }
-
-        const icons = document.querySelectorAll(".JumpIcon")
-        for (let i = 0; i < icons.length; i++) {
-            if (icons[i].style.display === "none") {
-                icons[i].style.display = "flex";
-            } else {
-                icons[i].style.display = "none";
-            }
-        }
-    }
-
-    filterLime = () => {
-
-        const limeLogo = document.querySelector("#limeLogo")
-
-        const clusters = document.querySelectorAll(".LimeCluster")
-        for (let i = 0; i < clusters.length; i++) {
-            if (clusters[i].style.display === "none") {
-                clusters[i].style.display = "flex";
-                limeLogo.style.opacity = 1;
-            } else {
-                clusters[i].style.display = "none";
-                limeLogo.style.opacity = 0.5;
-            }
-        }
-
-        const icons = document.querySelectorAll(".LimeIcon")
-        for (let i = 0; i < icons.length; i++) {
-            if (icons[i].style.display === "none") {
-                icons[i].style.display = "flex";
-            } else {
-                icons[i].style.display = "none";
+                icons[i].classList.add("hidden");
+                logo.style.opacity = 0.5;
             }
         }
     }
 
     filterLyft = () => {
+        this.setState(state => ({ showLyft: !state.showLyft }));
 
-        const lyftLogo = document.querySelector("#lyftLogo")
+        const clusters = document.querySelectorAll(`.LyftCluster`)
+        const logo = document.querySelector(`#lyftLogo`)
+        const icons = document.querySelectorAll(`.LyftIcon`)
 
-        const clusters = document.querySelectorAll(".LyftCluster")
         for (let i = 0; i < clusters.length; i++) {
-            if (clusters[i].style.display === "none") {
-                clusters[i].style.display = "flex";
-                lyftLogo.style.opacity = 1;
+            if (this.state.showLyft) {
+                clusters[i].classList.remove("hidden");
+                logo.style.opacity = 1;
             } else {
-                clusters[i].style.display = "none";
-                lyftLogo.style.opacity = 0.5;
+                clusters[i].classList.add("hidden");
+                logo.style.opacity = 0.5;
             }
         }
 
-        const icons = document.querySelectorAll(".LyftIcon")
         for (let i = 0; i < icons.length; i++) {
-            if (icons[i].style.display === "none") {
-                icons[i].style.display = "flex";
+            if (this.state.showLyft) {
+                icons[i].classList.remove("hidden");
+                logo.style.opacity = 1;
             } else {
-                icons[i].style.display = "none";
+                icons[i].classList.add("hidden");
+                logo.style.opacity = 0.5;
+            }
+        }
+    }
+
+    filterLime = () => {
+        this.setState(state => ({ showLime: !state.showLime }));
+
+        const clusters = document.querySelectorAll(`.LimeCluster`)
+        const logo = document.querySelector(`#limeLogo`)
+        const icons = document.querySelectorAll(`.LimeIcon`)
+
+        for (let i = 0; i < clusters.length; i++) {
+            if (this.state.showLime) {
+                clusters[i].classList.remove("hidden");
+                logo.style.opacity = 1;
+            } else {
+                clusters[i].classList.add("hidden");
+                logo.style.opacity = 0.5;
+            }
+        }
+
+        for (let i = 0; i < icons.length; i++) {
+            if (this.state.showLime) {
+                icons[i].classList.remove("hidden");
+                logo.style.opacity = 1;
+            } else {
+                icons[i].classList.add("hidden");
+                logo.style.opacity = 0.5;
+            }
+        }
+    }
+
+    filterJump = () => {
+        this.setState(state => ({ showJump: !state.showJump }));
+
+        const clusters = document.querySelectorAll(`.JumpCluster`)
+        const logo = document.querySelector(`#jumpLogo`)
+        const icons = document.querySelectorAll(`.JumpIcon`)
+
+        for (let i = 0; i < clusters.length; i++) {
+            if (this.state.showJump) {
+                clusters[i].classList.remove("hidden");
+                logo.style.opacity = 1;
+            } else {
+                clusters[i].classList.add("hidden");
+                logo.style.opacity = 0.5;
+            }
+        }
+
+        for (let i = 0; i < icons.length; i++) {
+            if (this.state.showJump) {
+                icons[i].classList.remove("hidden");
+                logo.style.opacity = 1;
+            } else {
+                icons[i].classList.add("hidden");
+                logo.style.opacity = 0.5;
             }
         }
     }
 
     filterBird = () => {
+        this.setState(state => ({ showBird: !state.showBird }));
 
-        const birdLogo = document.querySelector("#birdLogo")
+        const clusters = document.querySelectorAll(`.BirdCluster`)
+        const logo = document.querySelector(`#birdLogo`)
+        const icons = document.querySelectorAll(`.BirdIcon`)
 
-        const clusters = document.querySelectorAll(".BirdCluster")
         for (let i = 0; i < clusters.length; i++) {
-            if (clusters[i].style.display === "none") {
-                clusters[i].style.display = "flex";
-                birdLogo.style.opacity = 1;
+            if (this.state.showBird) {
+                clusters[i].classList.remove("hidden");
+                logo.style.opacity = 1;
             } else {
-                clusters[i].style.display = "none";
-                birdLogo.style.opacity = 0.5;
+                clusters[i].classList.add("hidden");
+                logo.style.opacity = 0.5;
             }
         }
 
-        const icons = document.querySelectorAll(".BirdIcon")
         for (let i = 0; i < icons.length; i++) {
-            if (icons[i].style.display === "none") {
-                icons[i].style.display = "flex";
-                birdLogo.style.opacity = 1;
+            if (this.state.showBird) {
+                icons[i].classList.remove("hidden");
+                logo.style.opacity = 1;
             } else {
-                icons[i].style.display = "none";
-                birdLogo.style.opacity = 0.5;
+                icons[i].classList.add("hidden");
+                logo.style.opacity = 0.5;
             }
         }
     }
 
     filterGotcha = () => {
+        this.setState(state => ({ showGotcha: !state.showGotcha }));
 
-        const gotchaLogo = document.querySelector("#gotchaLogo")
+        const clusters = document.querySelectorAll(`.GotchaCluster`)
+        const logo = document.querySelector(`#gotchaLogo`)
+        const icons = document.querySelectorAll(`.GotchaIcon`)
 
-        const clusters = document.querySelectorAll(".GotchaCluster")
         for (let i = 0; i < clusters.length; i++) {
-            if (clusters[i].style.display === "none") {
-                clusters[i].style.display = "flex";
-                gotchaLogo.style.opacity = 1;
+            if (this.state.showGotcha) {
+                clusters[i].classList.remove("hidden");
+                logo.style.opacity = 1;
             } else {
-                clusters[i].style.display = "none";
-                gotchaLogo.style.opacity = 0.5;
+                clusters[i].classList.add("hidden");
+                logo.style.opacity = 0.5;
             }
         }
 
-        const icons = document.querySelectorAll(".GotchaIcon")
         for (let i = 0; i < icons.length; i++) {
-            if (icons[i].style.display === "none") {
-                icons[i].style.display = "flex";
+            if (this.state.showGotcha) {
+                icons[i].classList.remove("hidden");
+                logo.style.opacity = 1;
             } else {
-                icons[i].style.display = "none";
+                icons[i].classList.add("hidden");
+                logo.style.opacity = 0.5;
             }
         }
     }
 
-    addSpinToMap(map, lat, lng) {
+
+    addSpinToMap = (map, lat, lng) => {
         API.getSpin().then(r => {
 
             const orangeIcon = new L.Icon({
@@ -183,36 +238,34 @@ class ScootMap extends Component {
             });
 
             const scooters = r.data.bikes;
-
             const markerClusters = L.markerClusterGroup({
                 iconCreateFunction: function(cluster) {
                     var childCount = cluster.getChildCount();
                     var c = ' size';
                     if (childCount < 50) {
-                      c += 'small';
+                    c += 'small';
                     }
                     else {
-                      c += 'large';
+                    c += 'large';
                     }
+
                     return new L.DivIcon({ html: childCount,
-                     className: `spinCluster` + c, iconSize: new L.Point(50, 50) });
+                    className: `spinCluster` + c, iconSize: new L.Point(50, 50) });
                     }
             })
 
-
             for ( var i = 0; i < scooters.length; i++ )
-            {
-                let spinLat = scooters[i].lat;
-                let spinLng = scooters[i].lon;
+                {
+                    let spinLat = scooters[i].lat;
+                    let spinLng = scooters[i].lon;
 
-                let popup =
-                `<h1>Spin</h1> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${spinLat},${spinLng}&travelmode=walking' target='_blank'>Get Directions</a>`
+                    let popup =
+                    `<h1>Spin</h1> <a href='https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${spinLat},${spinLng}&travelmode=walking' target='_blank'>Get Directions</a>`
 
-                let m = L.marker([spinLat, spinLng], {icon: orangeIcon}).bindPopup( popup );
-                markerClusters.addLayer( m );
-            }
+                    let m = L.marker([spinLat, spinLng], {icon: orangeIcon}).bindPopup( popup );
+                    markerClusters.addLayer( m );
+                }
             map.addLayer( markerClusters );
-
         })
     }
 
@@ -287,7 +340,7 @@ class ScootMap extends Component {
             marker: {
                 icon: violetIcon
             },
-            popupFormat: ({ result }) => result.label + popupText,
+            popupFormat: ({ result }) => `<div style='width: 10rem'>${result.label} ${popupText}</div>`,
             maxMarkers: 1,
             retainZoomLevel: false,
             animateZoom: true,
@@ -331,7 +384,7 @@ class ScootMap extends Component {
     }
 
     componentDidMount() {
-        //show the user location
+        //if coming from the saved locations page
         if (this.props.popup) {
             let lat = this.props.startingLat;
             let lng = this.props.startingLng;
@@ -345,14 +398,30 @@ class ScootMap extends Component {
             }
             ).addTo(myMap);
 
-            new L.marker([lat, lng]).addTo(myMap).bindPopup(`${this.props.address} </br>
-            <button class="currentLocationBtn">Back to Current Location</button>`).openPopup()
+            const violetIcon = new L.Icon({
+                iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+
+            new L.marker([lat, lng], {icon: violetIcon}).addTo(myMap).bindPopup(`<div style='width: 10rem'>${this.props.address} </br>
+            <button class="currentLocationBtn">Back to Current Location</button></div>`).openPopup()
+
+            this.getUserAddress(myMap);
+            this.addSpinToMap(myMap, lat, lng)
+            this.addMoreScoots(API.getLyft, "Lyft", "yellow", myMap, lat, lng)
+            this.addMoreScoots(API.getJump, "Jump", "red", myMap, lat, lng)
+            this.addMoreScoots(API.getLime, "Lime", "green", myMap, lat, lng)
+            this.addMoreScoots(API.getGotcha, "Gotcha", "grey", myMap, lat, lng)
+            this.addMoreScoots(API.getBird, "Bird", "black", myMap, lat, lng)
 
             document.querySelector(".currentLocationBtn").addEventListener("click", function() {
-                API.getUserLocation()
-                .then(user => {
-                    myMap.setView([user.location.lat, user.location.lng], 15);
-                    L.circleMarker([user.location.lat, user.location.lng], {
+                navigator.geolocation.getCurrentPosition(user => {
+                    myMap.setView([user.coords.latitude, user.coords.longitude], 16);
+                    L.circleMarker([user.coords.latitude, user.coords.longitude], {
                         color: 'red',
                         fillColor: '#f03',
                         fillOpacity: 0.5,
@@ -360,13 +429,6 @@ class ScootMap extends Component {
                     }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup();
                 })
             })
-            this.getUserAddress(myMap);
-            this.addSpinToMap(myMap, lat, lng)
-            this.addMoreScoots(API.getLyft, "Lyft", "red", myMap, lat, lng)
-            this.addMoreScoots(API.getJump, "Jump", "yellow", myMap, lat, lng)
-            this.addMoreScoots(API.getLime, "Lime", "green", myMap, lat, lng)
-            this.addMoreScoots(API.getGotcha, "Gotcha", "grey", myMap, lat, lng)
-            this.addMoreScoots(API.getBird, "Bird", "black", myMap, lat, lng)
         }
         else {
             navigator.geolocation.getCurrentPosition(user => {
@@ -389,14 +451,14 @@ class ScootMap extends Component {
 
                 this.getUserAddress(myMap);
                 this.addSpinToMap(myMap, lat, lng)
-                this.addMoreScoots(API.getLyft, "Lyft", "red", myMap, lat, lng)
-                this.addMoreScoots(API.getJump, "Jump", "yellow", myMap, lat, lng)
+                this.addMoreScoots(API.getLyft, "Lyft", "yellow", myMap, lat, lng)
+                this.addMoreScoots(API.getJump, "Jump", "red", myMap, lat, lng)
                 this.addMoreScoots(API.getLime, "Lime", "green", myMap, lat, lng)
                 this.addMoreScoots(API.getGotcha, "Gotcha", "grey", myMap, lat, lng)
                 this.addMoreScoots(API.getBird, "Bird", "black", myMap, lat, lng)
             })
+        }
     }
-}
 
     render() {
         return (

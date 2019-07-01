@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { withRouter, Route } from "react-router-dom"
-import ScootMap from "./components/Map/ScootMap.1";
+import ScootMap from "./components/Map/ScootMap";
 import Homepage from "./components/Homepage/Homepage";
 import Registration from "./components/Registration/Registration";
 import SavedLocations from "./components/SavedLocations/SavedLocations";

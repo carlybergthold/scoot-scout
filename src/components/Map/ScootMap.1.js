@@ -558,31 +558,32 @@ class ScootMap extends Component {
     }
 
     componentDidMount() {
-        console.log("component mounted")
         API.getJump().then(r => {
-            this.setState({ jump: r})
+            this.setState({ jump: r })
         })
-        API.getSpin().then(r => {
-            this.setState({spin: r.data.bikes})
+        .then(() => {
+            API.getSpin().then(r => {
+            this.setState({ spin: r.data.bikes })
+            })
         })
         .then(() => {
             API.getLime().then(r => {
-                this.setState({ lime: r})
+                this.setState({ lime: r })
             })
         })
         .then(() => {
             API.getLyft().then(r => {
-                this.setState({ lyft: r})
+                this.setState({ lyft: r })
             })
         })
         .then(() => {
             API.getBird().then(r => {
-                this.setState({ bird: r})
+                this.setState({ bird: r })
             })
         })
         .then(() => {
             API.getGotcha().then(r => {
-                this.setState({ gotcha: r})
+                this.setState({ gotcha: r })
             })
         })
         .then(() => {
@@ -613,18 +614,6 @@ class ScootMap extends Component {
             new L.marker([lat, lng], {icon: violetIcon}).addTo(myMap).bindPopup(`<div style='width: 10rem'>${this.props.address} </br>
             <button class="currentLocationBtn">Back to Current Location</button></div>`).openPopup()
 
-            document.querySelector(".currentLocationBtn").addEventListener("click", function() {
-                API.getUserLocation()
-                .then(user => {
-                    myMap.setView([user.location.lat, user.location.lng], 15);
-                    L.circleMarker([user.location.lat, user.location.lng], {
-                        color: 'red',
-                        fillColor: '#f03',
-                        fillOpacity: 0.5,
-                        radius: 12
-                    }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup();
-                })
-            })
             this.getUserAddress(myMap);
             this.addSpinToMap(myMap, lat, lng)
             this.addLyftToMap("Lyft", "yellow", myMap, lat, lng)
@@ -632,6 +621,19 @@ class ScootMap extends Component {
             this.addLimeToMap("Lime", "green", myMap, lat, lng)
             this.addGotchaToMap("Gotcha", "grey", myMap, lat, lng)
             this.addBirdToMap("Bird", "black", myMap, lat, lng)
+
+            document.querySelector(".currentLocationBtn").addEventListener("click", function() {
+                navigator.geolocation.getCurrentPosition()
+                .then(user => {
+                    myMap.setView([user.coords.latitude, user.coords.longitude], 16);
+                    L.circleMarker([user.coords.latitude, user.coords.longitude], {
+                        color: 'red',
+                        fillColor: '#f03',
+                        fillOpacity: 0.5,
+                        radius: 12
+                    }).bindPopup("<h3>You are Here</h3>").addTo(myMap).openPopup();
+                })
+            })
         }
         else {
             navigator.geolocation.getCurrentPosition(user => {
@@ -664,7 +666,6 @@ class ScootMap extends Component {
     }
 
     render() {
-        console.log("comp rendered")
         return (
             <div>
                 <div id="map"></div>
