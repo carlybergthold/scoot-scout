@@ -462,7 +462,7 @@ class ScootMap extends Component {
 
     render() {
         return (
-            <div>
+            <div id="mapContainer">
                 <div id="map"></div>
                 <div id="sidebar">
                     <img src={spin} className="brandLogo" id="spinLogo" alt="spin-logo" onClick={this.filterSpin}></img>
