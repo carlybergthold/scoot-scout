@@ -58,6 +58,7 @@ At Scoot Scout, we aren't brand loyal; we're scoot loyal. Simply open up the app
 git clone https://github.com/carlybergthold/scoot-scout.git
 cd scoot-scout
 npm start
+//open new tab or window
 cd scoot-scout/src
 json-server -p 8088 -w userdatabase.json
 ```
