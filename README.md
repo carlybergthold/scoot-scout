@@ -52,3 +52,14 @@ At Scoot Scout, we aren't brand loyal; we're scoot loyal. Simply open up the app
 * Lime
 * Spin
 * Nashville Metro Open Data Source
+
+## How to Run the App
+```
+git clone https://github.com/carlybergthold/scoot-scout.git
+cd scoot-scout
+npm start
+cd scoot-scout/src
+json-server -p 8088 -w userdatabase.json
+```
+If the browser doesn't open automatically, visit http://localhost:3000 to view the app in your browser.
+Scoot Scout is built for mobile, so be sure to resize the window to 700px or less to view the app.
