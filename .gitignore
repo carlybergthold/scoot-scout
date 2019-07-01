@@ -27,5 +27,5 @@ yarn-error.log*
 /src/API/apiKeys.js
 
 # user database
-userdatabase.json
+/src/userdatabase.json
 
