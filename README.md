@@ -1,8 +1,10 @@
 # Scoot Scout
 
-Motorized scooters have revolutionized the way city dwellers get around, and more and more scooter companies are popping up to meet the demand. But why waste time opening up each company's app to locate your nearest ride? 
+Electric scooters have revolutionized the way city dwellers get around, and more and more scooter companies are popping up to meet the demand. But why waste time opening up each company's app to locate your nearest ride? 
 
 At Scoot Scout, we aren't brand loyal; we're scoot loyal. Simply open up the app, and you can see all the scooters near you. Yeah. Take that, Big Scooter.
+
+Watch the [demo!](https://youtu.be/BUvpbtT1OBQ "Scoot Scout video demo")
 
 ## Features
 * find scooters near you or search for scooters at a different location
